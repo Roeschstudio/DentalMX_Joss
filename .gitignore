@@ -58,13 +58,16 @@ Thumbs.db
 # ARCHIVOS DE DESARROLLO
 #--------------------------------------------------------------------
 *.log
-*.sql
 *.sqlite
 *.db
 nbproject/
 .buildpath
 .project
 .settings/
+
+# Permitir archivos SQL de instalación en database/
+!database/*.sql
+!database/**/*.sql
 
 #--------------------------------------------------------------------
 # ARCHIVOS DE TESTING

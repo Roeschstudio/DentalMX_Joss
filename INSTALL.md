@@ -359,7 +359,7 @@ Debe ver la página de inicio de sesión.
 
 ### 6. Iniciar Sesión
 
-- Usuario: `admin`
+- Email: `admin@dentalmx.com`
 - Contraseña: `admin123`
 
 Si puede acceder al dashboard, la instalación fue exitosa.
