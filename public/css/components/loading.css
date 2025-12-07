@@ -1,0 +1,532 @@
+/**
+ * ============================================
+ * DENTAL MX - LOADING COMPONENT
+ * ============================================
+ * Spinners, skeletons, progress bars
+ * ============================================
+ */
+
+/* ========================================
+   SPINNER
+   ======================================== */
+.ds-spinner {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--color-gray-200);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spinnerRotate 0.8s linear infinite;
+}
+
+@keyframes spinnerRotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Spinner Sizes */
+.ds-spinner--xs {
+    width: 14px;
+    height: 14px;
+    border-width: 2px;
+}
+
+.ds-spinner--sm {
+    width: 18px;
+    height: 18px;
+    border-width: 2px;
+}
+
+.ds-spinner--lg {
+    width: 36px;
+    height: 36px;
+    border-width: 4px;
+}
+
+.ds-spinner--xl {
+    width: 48px;
+    height: 48px;
+    border-width: 5px;
+}
+
+/* Spinner Colors */
+.ds-spinner--white {
+    border-color: rgba(255, 255, 255, 0.3);
+    border-top-color: var(--color-white);
+}
+
+.ds-spinner--success {
+    border-top-color: var(--color-success);
+}
+
+.ds-spinner--danger {
+    border-top-color: var(--color-danger);
+}
+
+.ds-spinner--warning {
+    border-top-color: var(--color-warning);
+}
+
+/* ========================================
+   DOTS SPINNER
+   ======================================== */
+.ds-spinner-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.ds-spinner-dots__dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    animation: dotsBounce 1.4s infinite ease-in-out both;
+}
+
+.ds-spinner-dots__dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.ds-spinner-dots__dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes dotsBounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+/* ========================================
+   PULSE SPINNER
+   ======================================== */
+.ds-spinner-pulse {
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    animation: pulseBeat 1.2s ease-in-out infinite;
+}
+
+@keyframes pulseBeat {
+    0%, 100% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   LOADING OVERLAY
+   ======================================== */
+.ds-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    z-index: var(--z-loading);
+}
+
+.ds-loading-overlay--fixed {
+    position: fixed;
+}
+
+.ds-loading-overlay__text {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+}
+
+/* ========================================
+   PROGRESS BAR
+   ======================================== */
+.ds-progress {
+    width: 100%;
+    height: 8px;
+    background-color: var(--color-gray-200);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.ds-progress__bar {
+    height: 100%;
+    background-color: var(--color-primary);
+    border-radius: var(--radius-full);
+    transition: width var(--transition-normal);
+}
+
+/* Progress Sizes */
+.ds-progress--xs {
+    height: 4px;
+}
+
+.ds-progress--sm {
+    height: 6px;
+}
+
+.ds-progress--lg {
+    height: 12px;
+}
+
+/* Progress Colors */
+.ds-progress__bar--success {
+    background-color: var(--color-success);
+}
+
+.ds-progress__bar--warning {
+    background-color: var(--color-warning);
+}
+
+.ds-progress__bar--danger {
+    background-color: var(--color-danger);
+}
+
+.ds-progress__bar--info {
+    background-color: var(--color-info);
+}
+
+/* Striped Progress */
+.ds-progress__bar--striped {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 1rem 1rem;
+}
+
+.ds-progress__bar--animated {
+    animation: progressStripes 1s linear infinite;
+}
+
+@keyframes progressStripes {
+    from {
+        background-position: 1rem 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+/* Indeterminate Progress */
+.ds-progress--indeterminate .ds-progress__bar {
+    width: 30%;
+    animation: progressIndeterminate 1.5s ease-in-out infinite;
+}
+
+@keyframes progressIndeterminate {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(400%);
+    }
+}
+
+/* Progress with Label */
+.ds-progress-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.ds-progress__label {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+}
+
+.ds-progress__value {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-900);
+}
+
+/* ========================================
+   SKELETON LOADER
+   ======================================== */
+.ds-skeleton {
+    background-color: var(--color-gray-200);
+    border-radius: var(--radius);
+    animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeletonPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* Skeleton Types */
+.ds-skeleton--text {
+    height: 1em;
+    margin-bottom: var(--space-2);
+}
+
+.ds-skeleton--text:last-child {
+    width: 70%;
+}
+
+.ds-skeleton--title {
+    height: 1.5em;
+    width: 50%;
+    margin-bottom: var(--space-3);
+}
+
+.ds-skeleton--avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.ds-skeleton--avatar-lg {
+    width: 64px;
+    height: 64px;
+}
+
+.ds-skeleton--image {
+    width: 100%;
+    height: 200px;
+    border-radius: var(--radius-lg);
+}
+
+.ds-skeleton--button {
+    width: 100px;
+    height: 36px;
+    border-radius: var(--radius);
+}
+
+.ds-skeleton--input {
+    width: 100%;
+    height: 40px;
+    border-radius: var(--radius-md);
+}
+
+/* Skeleton Card */
+.ds-skeleton-card {
+    padding: var(--space-4);
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.ds-skeleton-card__header {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.ds-skeleton-card__content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Skeleton Table Row */
+.ds-skeleton-table-row {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-3) 0;
+    border-bottom: var(--border-width) solid var(--color-gray-100);
+}
+
+.ds-skeleton-table-row > .ds-skeleton {
+    flex: 1;
+    height: 16px;
+}
+
+/* ========================================
+   LOADING STATES
+   ======================================== */
+
+/* Container Loading State */
+.ds-is-loading {
+    position: relative;
+    pointer-events: none;
+    min-height: 100px;
+}
+
+.ds-is-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 3px solid var(--color-gray-200);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spinnerRotate 0.8s linear infinite;
+}
+
+.ds-is-loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 1;
+}
+
+/* Button Loading State */
+.ds-btn.ds-is-loading {
+    color: transparent;
+    min-height: auto;
+}
+
+.ds-btn.ds-is-loading::before {
+    display: none;
+}
+
+.ds-btn.ds-is-loading::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border-width: 2px;
+    border-color: currentColor;
+    border-top-color: transparent;
+}
+
+/* ========================================
+   PAGE LOADER
+   ======================================== */
+.ds-page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    z-index: var(--z-page-loader);
+}
+
+.ds-page-loader__logo {
+    font-size: var(--font-size-3xl);
+    animation: logoFloat 2s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.ds-page-loader__text {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+}
+
+/* ========================================
+   TOP BAR LOADER
+   ======================================== */
+.ds-topbar-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--color-gray-200);
+    z-index: var(--z-page-loader);
+    overflow: hidden;
+}
+
+.ds-topbar-loader__bar {
+    height: 100%;
+    background-color: var(--color-primary);
+    animation: topbarProgress 2s ease-in-out infinite;
+}
+
+@keyframes topbarProgress {
+    0% {
+        width: 0;
+        margin-left: 0;
+    }
+    50% {
+        width: 50%;
+        margin-left: 25%;
+    }
+    100% {
+        width: 0;
+        margin-left: 100%;
+    }
+}
+
+/* ========================================
+   DARK MODE
+   ======================================== */
+[data-theme="dark"] .ds-spinner {
+    border-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ds-loading-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="dark"] .ds-loading-overlay__text {
+    color: var(--color-gray-400);
+}
+
+[data-theme="dark"] .ds-progress {
+    background-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ds-skeleton {
+    background-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ds-skeleton-card {
+    background-color: var(--color-gray-800);
+}
+
+[data-theme="dark"] .ds-is-loading::before {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .ds-is-loading::after {
+    border-color: var(--color-gray-600);
+    border-top-color: var(--color-primary);
+}
+
+[data-theme="dark"] .ds-page-loader {
+    background-color: var(--color-gray-900);
+}
+
+[data-theme="dark"] .ds-topbar-loader {
+    background-color: var(--color-gray-800);
+}

@@ -1,0 +1,450 @@
+/**
+ * ============================================
+ * DENTAL MX - BADGES COMPONENT
+ * ============================================
+ * Status badges, counters, tags, labels
+ * ============================================
+ */
+
+/* ========================================
+   BADGE BASE
+   ======================================== */
+.ds-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: var(--radius);
+    background-color: var(--color-gray-200);
+    color: var(--color-gray-700);
+}
+
+/* ========================================
+   BADGE SIZES
+   ======================================== */
+.ds-badge--sm {
+    padding: var(--space-0-5) var(--space-1-5);
+    font-size: 10px;
+}
+
+.ds-badge--lg {
+    padding: var(--space-1-5) var(--space-3);
+    font-size: var(--font-size-sm);
+}
+
+/* ========================================
+   BADGE VARIANTS
+   ======================================== */
+
+/* Primary */
+.ds-badge--primary {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+}
+
+/* Success */
+.ds-badge--success {
+    background-color: var(--color-success-light);
+    color: var(--color-success-dark);
+}
+
+/* Warning */
+.ds-badge--warning {
+    background-color: var(--color-warning-light);
+    color: var(--color-warning-dark);
+}
+
+/* Danger */
+.ds-badge--danger {
+    background-color: var(--color-danger-light);
+    color: var(--color-danger-dark);
+}
+
+/* Info */
+.ds-badge--info {
+    background-color: var(--color-info-light);
+    color: var(--color-info-dark);
+}
+
+/* Secondary */
+.ds-badge--secondary {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-600);
+}
+
+/* ========================================
+   BADGE SOLID VARIANTS
+   ======================================== */
+.ds-badge--solid-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.ds-badge--solid-success {
+    background-color: var(--color-success);
+    color: var(--color-white);
+}
+
+.ds-badge--solid-warning {
+    background-color: var(--color-warning);
+    color: var(--color-white);
+}
+
+.ds-badge--solid-danger {
+    background-color: var(--color-danger);
+    color: var(--color-white);
+}
+
+.ds-badge--solid-info {
+    background-color: var(--color-info);
+    color: var(--color-white);
+}
+
+.ds-badge--dark {
+    background-color: var(--color-gray-800);
+    color: var(--color-white);
+}
+
+.ds-badge--solid-dark {
+    background-color: var(--color-gray-900);
+    color: var(--color-white);
+}
+
+/* ========================================
+   BADGE OUTLINE VARIANTS
+   ======================================== */
+.ds-badge--outline {
+    background-color: transparent;
+    border: var(--border-width) solid currentColor;
+}
+
+.ds-badge--outline-primary {
+    background-color: transparent;
+    border: var(--border-width) solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.ds-badge--outline-success {
+    background-color: transparent;
+    border: var(--border-width) solid var(--color-success);
+    color: var(--color-success);
+}
+
+.ds-badge--outline-warning {
+    background-color: transparent;
+    border: var(--border-width) solid var(--color-warning);
+    color: var(--color-warning);
+}
+
+.ds-badge--outline-danger {
+    background-color: transparent;
+    border: var(--border-width) solid var(--color-danger);
+    color: var(--color-danger);
+}
+
+.ds-badge--outline-info {
+    background-color: transparent;
+    border: var(--border-width) solid var(--color-info);
+    color: var(--color-info);
+}
+
+/* ========================================
+   BADGE SHAPES
+   ======================================== */
+
+/* Pill (full rounded) */
+.ds-badge--pill {
+    border-radius: var(--radius-full);
+    padding-left: var(--space-2-5);
+    padding-right: var(--space-2-5);
+}
+
+/* Dot */
+.ds-badge--dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: var(--radius-full);
+}
+
+.ds-badge--dot.ds-badge--lg {
+    width: 12px;
+    height: 12px;
+}
+
+/* ========================================
+   BADGE WITH ICON
+   ======================================== */
+.ds-badge--icon {
+    gap: var(--space-1);
+}
+
+.ds-badge__icon {
+    font-size: inherit;
+    line-height: 1;
+}
+
+/* ========================================
+   BADGE COUNTER
+   ======================================== */
+.ds-badge-counter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 var(--space-1-5);
+    font-size: 11px;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    color: var(--color-white);
+    background-color: var(--color-danger);
+    border-radius: var(--radius-full);
+}
+
+.ds-badge-counter--primary {
+    background-color: var(--color-primary);
+}
+
+.ds-badge-counter--success {
+    background-color: var(--color-success);
+}
+
+.ds-badge-counter--sm {
+    min-width: 16px;
+    height: 16px;
+    font-size: 10px;
+    padding: 0 var(--space-1);
+}
+
+/* ========================================
+   STATUS INDICATOR
+   ======================================== */
+.ds-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.ds-status__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-gray-400);
+}
+
+.ds-status__dot--online,
+.ds-status__dot--active {
+    background-color: var(--color-success);
+}
+
+.ds-status__dot--offline,
+.ds-status__dot--inactive {
+    background-color: var(--color-gray-400);
+}
+
+.ds-status__dot--away,
+.ds-status__dot--pending {
+    background-color: var(--color-warning);
+}
+
+.ds-status__dot--busy,
+.ds-status__dot--error {
+    background-color: var(--color-danger);
+}
+
+/* Animated pulse for online status */
+.ds-status__dot--pulse {
+    position: relative;
+}
+
+.ds-status__dot--pulse::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background-color: inherit;
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(2);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+.ds-status__text {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+}
+
+/* ========================================
+   TAG
+   ======================================== */
+.ds-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-700);
+    background-color: var(--color-gray-100);
+    border-radius: var(--radius);
+    transition: all var(--transition-fast);
+}
+
+.ds-tag--primary {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+}
+
+.ds-tag--removable {
+    padding-right: var(--space-1);
+}
+
+.ds-tag__remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin-left: var(--space-1);
+    font-size: 14px;
+    color: inherit;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity var(--transition-fast);
+}
+
+.ds-tag__remove:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   TAG GROUP
+   ======================================== */
+.ds-tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+/* ========================================
+   NOTIFICATION BADGE
+   ======================================== */
+.ds-notification-badge {
+    position: relative;
+    display: inline-block;
+}
+
+.ds-notification-badge__count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    font-size: 10px;
+    font-weight: var(--font-weight-bold);
+    line-height: 18px;
+    text-align: center;
+    color: var(--color-white);
+    background-color: var(--color-danger);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-white);
+}
+
+.ds-notification-badge__count:empty {
+    display: none;
+}
+
+.ds-notification-badge__count--dot {
+    min-width: 10px;
+    height: 10px;
+    padding: 0;
+    top: -2px;
+    right: -2px;
+}
+
+/* ========================================
+   PRIORITY BADGE
+   ======================================== */
+.ds-priority {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--radius);
+}
+
+.ds-priority--low {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-600);
+}
+
+.ds-priority--medium {
+    background-color: var(--color-info-light);
+    color: var(--color-info-dark);
+}
+
+.ds-priority--high {
+    background-color: var(--color-warning-light);
+    color: var(--color-warning-dark);
+}
+
+.ds-priority--urgent {
+    background-color: var(--color-danger-light);
+    color: var(--color-danger-dark);
+}
+
+.ds-priority__icon {
+    font-size: 12px;
+}
+
+/* ========================================
+   DARK MODE
+   ======================================== */
+[data-theme="dark"] .ds-badge {
+    background-color: var(--color-gray-700);
+    color: var(--color-gray-200);
+}
+
+[data-theme="dark"] .ds-badge--secondary {
+    background-color: var(--color-gray-700);
+    color: var(--color-gray-300);
+}
+
+[data-theme="dark"] .ds-tag {
+    background-color: var(--color-gray-700);
+    color: var(--color-gray-200);
+}
+
+[data-theme="dark"] .ds-notification-badge__count {
+    border-color: var(--color-gray-900);
+}
+
+[data-theme="dark"] .ds-status__text {
+    color: var(--color-gray-400);
+}

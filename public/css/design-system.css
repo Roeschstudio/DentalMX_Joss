@@ -1,0 +1,6 @@
+/**
+ * Dental MX Design System (compatibilidad)
+ * Este archivo actúa como alias y reexporta el bundle modular v2
+ */
+@import url('design-system-v2.css');
+

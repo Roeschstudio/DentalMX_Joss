@@ -1,0 +1,103 @@
+#--------------------------------------------------------------------
+# GITIGNORE - DENTALMX
+#--------------------------------------------------------------------
+# Este archivo evita que archivos sensibles y temporales se suban a GitHub
+
+#--------------------------------------------------------------------
+# ARCHIVOS DE CONFIGURACIÓN SENSIBLES
+#--------------------------------------------------------------------
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+
+#--------------------------------------------------------------------
+# DIRECTORIOS DE ESCRITURA Y CACHE
+#--------------------------------------------------------------------
+writable/cache/*
+!writable/cache/index.html
+writable/logs/*
+!writable/logs/index.html
+writable/session/*
+!writable/session/index.html
+writable/debugbar/*
+!writable/debugbar/index.html
+writable/uploads/*
+!writable/uploads/index.html
+
+#--------------------------------------------------------------------
+# ARCHIVOS SUBIDOS POR USUARIOS
+#--------------------------------------------------------------------
+public/uploads/*
+!public/uploads/.gitkeep
+
+#--------------------------------------------------------------------
+# DEPENDENCIAS Y VENDOR
+#--------------------------------------------------------------------
+vendor/
+node_modules/
+bower_components/
+
+#--------------------------------------------------------------------
+# ARCHIVOS DE SISTEMA OPERATIVO
+#--------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+#--------------------------------------------------------------------
+# ARCHIVOS DE DESARROLLO
+#--------------------------------------------------------------------
+*.log
+*.sql
+*.sqlite
+*.db
+nbproject/
+.buildpath
+.project
+.settings/
+
+#--------------------------------------------------------------------
+# ARCHIVOS DE TESTING
+#--------------------------------------------------------------------
+phpunit.xml
+tests/_output/*
+tests/_support/_generated
+build/
+builds/
+coverage/
+
+#--------------------------------------------------------------------
+# BACKUPS Y TEMPORALES
+#--------------------------------------------------------------------
+*.bak
+*.tmp
+*.temp
+*.old
+*~
+README.md.bak
+composer.phar
+
+#--------------------------------------------------------------------
+# ARCHIVOS ESPECÍFICOS DEL PROYECTO
+#--------------------------------------------------------------------
+schema_dump.txt
+verify_output.txt
+public/test-*.html
+public/test-*.php
+
+#--------------------------------------------------------------------
+# MANTENER ESTRUCTURA DE DIRECTORIOS
+#--------------------------------------------------------------------
+!writable/index.html
+!public/index.php
+!tests/index.html

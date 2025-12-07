@@ -1,0 +1,52 @@
+.ds-progress {
+    width: 100%;
+    height: 8px;
+    background-color: var(--color-gray-200);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.ds-progress--sm { height: 6px; }
+.ds-progress--lg { height: 12px; }
+.ds-progress--xl { height: 16px; }
+
+.ds-progress__bar {
+    height: 100%;
+    width: 0;
+    background-color: var(--color-primary);
+    transition: width var(--transition-normal);
+}
+
+.ds-progress__bar--primary { background-color: var(--color-primary); }
+.ds-progress__bar--secondary { background-color: var(--color-secondary); }
+.ds-progress__bar--success { background-color: var(--color-success); }
+.ds-progress__bar--warning { background-color: var(--color-warning); }
+.ds-progress__bar--danger { background-color: var(--color-danger); }
+.ds-progress__bar--info { background-color: var(--color-info); }
+
+.ds-progress--striped .ds-progress__bar {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 1rem 1rem;
+}
+
+.ds-progress--animated .ds-progress__bar {
+    animation: ds-progress-stripes 1s linear infinite;
+}
+
+@keyframes ds-progress-stripes {
+    from { background-position: 0 0; }
+    to { background-position: 1rem 0; }
+}
+
+[data-theme="dark"] .ds-progress {
+    background-color: var(--color-gray-700);
+}

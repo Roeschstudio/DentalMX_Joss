@@ -1,0 +1,575 @@
+/**
+ * ============================================
+ * DENTAL MX - FORMS COMPONENT
+ * ============================================
+ * Inputs, selects, checkboxes, radios, etc.
+ * ============================================
+ */
+
+/* ========================================
+   FORM GROUP
+   ======================================== */
+.ds-form-group {
+    margin-bottom: var(--space-4);
+}
+
+.ds-form-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Inline Form */
+.ds-form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--space-3);
+}
+
+.ds-form-inline .ds-form-group {
+    margin-bottom: 0;
+    flex: 1;
+    min-width: 200px;
+}
+
+/* ========================================
+   LABEL
+   ======================================== */
+.ds-label {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-700);
+}
+
+.ds-label--required::after {
+    content: " *";
+    color: var(--color-danger);
+}
+
+.ds-label--inline {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: var(--space-2);
+}
+
+/* ========================================
+   INPUT BASE
+   ======================================== */
+.ds-input {
+    display: block;
+    width: 100%;
+    padding: var(--space-2-5) var(--space-3);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+    color: var(--color-gray-900);
+    background-color: var(--color-white);
+    background-clip: padding-box;
+    border: var(--border-width) solid var(--color-gray-400);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
+    transition: border-color var(--transition-fast), 
+                box-shadow var(--transition-fast),
+                background-color var(--transition-fast);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.ds-input::placeholder {
+    color: var(--color-gray-500);
+    opacity: 1;
+}
+
+.ds-input:hover {
+    border-color: var(--color-gray-500);
+}
+
+.ds-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.25);
+}
+
+/* Focus visible para navegación por teclado - más prominente */
+.ds-input:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.3);
+}
+
+/* Disabled */
+.ds-input:disabled,
+.ds-input[readonly] {
+    background-color: var(--color-gray-100);
+    border-color: var(--color-gray-300);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* ========================================
+   INPUT SIZES
+   ======================================== */
+.ds-input--sm {
+    padding: var(--space-1-5) var(--space-2-5);
+    font-size: var(--font-size-sm);
+    border-radius: var(--radius);
+}
+
+.ds-input--lg {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-lg);
+    border-radius: var(--radius-lg);
+}
+
+/* ========================================
+   INPUT STATES
+   ======================================== */
+
+/* Success */
+.ds-input--success,
+.ds-input.is-valid {
+    border-color: var(--color-success);
+}
+
+.ds-input--success:focus,
+.ds-input.is-valid:focus {
+    border-color: var(--color-success);
+    box-shadow: 0 0 0 3px rgba(var(--color-success-rgb), 0.25);
+}
+
+.ds-input--success:focus-visible,
+.ds-input.is-valid:focus-visible {
+    outline: 2px solid var(--color-success);
+    outline-offset: 2px;
+}
+
+/* Error */
+.ds-input--error,
+.ds-input.is-invalid {
+    border-color: var(--color-danger);
+}
+
+.ds-input--error:focus,
+.ds-input.is-invalid:focus {
+    border-color: var(--color-danger);
+    box-shadow: 0 0 0 3px rgba(var(--color-danger-rgb), 0.25);
+}
+
+.ds-input--error:focus-visible,
+.ds-input.is-invalid:focus-visible {
+    outline: 2px solid var(--color-danger);
+    outline-offset: 2px;
+}
+
+/* ========================================
+   TEXTAREA
+   ======================================== */
+.ds-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.ds-textarea--no-resize {
+    resize: none;
+}
+
+/* ========================================
+   SELECT
+   ======================================== */
+.ds-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    background-size: 12px 12px;
+    padding-right: var(--space-10);
+}
+
+.ds-select::-ms-expand {
+    display: none;
+}
+
+.ds-select[multiple] {
+    background-image: none;
+    padding-right: var(--space-3);
+}
+
+/* ========================================
+   INPUT GROUP
+   ======================================== */
+.ds-input-group {
+    display: flex;
+    position: relative;
+}
+
+.ds-input-group > .ds-input {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+}
+
+.ds-input-group > .ds-input:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.ds-input-group > .ds-input:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Addon */
+.ds-input-group__addon {
+    display: flex;
+    align-items: center;
+    padding: var(--space-2-5) var(--space-3);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-gray-700);
+    text-align: center;
+    white-space: nowrap;
+    background-color: var(--color-gray-100);
+    border: var(--border-width) solid var(--color-gray-400);
+}
+
+.ds-input-group__addon:first-child {
+    border-right: 0;
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.ds-input-group__addon:last-child {
+    border-left: 0;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+/* ========================================
+   CHECKBOX & RADIO
+   ======================================== */
+.ds-checkbox,
+.ds-radio {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    cursor: pointer;
+    margin-bottom: var(--space-2);
+}
+
+.ds-checkbox input,
+.ds-radio input {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: var(--color-primary);
+}
+
+/* Focus visible para checkbox/radio nativo */
+.ds-checkbox input:focus-visible,
+.ds-radio input:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.ds-checkbox__label,
+.ds-radio__label {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-700);
+    line-height: var(--line-height-normal);
+}
+
+/* Custom Checkbox */
+.ds-checkbox--custom input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.ds-checkbox--custom .ds-checkbox__checkmark {
+    position: relative;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: var(--color-white);
+    border: var(--border-width-2) solid var(--color-gray-400);
+    border-radius: var(--radius);
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+/* Focus visible para checkbox custom */
+.ds-checkbox--custom input:focus-visible ~ .ds-checkbox__checkmark {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.2);
+}
+
+.ds-checkbox--custom:hover .ds-checkbox__checkmark {
+    border-color: var(--color-primary);
+}
+
+.ds-checkbox--custom input:checked ~ .ds-checkbox__checkmark {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.ds-checkbox--custom .ds-checkbox__checkmark::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+    border: solid var(--color-white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.ds-checkbox--custom input:checked ~ .ds-checkbox__checkmark::after {
+    display: block;
+}
+
+/* ========================================
+   SWITCH / TOGGLE
+   ======================================== */
+.ds-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    cursor: pointer;
+}
+
+.ds-switch input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.ds-switch__track {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    background-color: var(--color-gray-300);
+    border-radius: var(--radius-full);
+    transition: background-color var(--transition-fast);
+}
+
+.ds-switch__track::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-white);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast);
+}
+
+.ds-switch input:checked + .ds-switch__track {
+    background-color: var(--color-primary);
+}
+
+.ds-switch input:checked + .ds-switch__track::after {
+    transform: translateX(20px);
+}
+
+.ds-switch input:focus + .ds-switch__track {
+    box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.25);
+}
+
+/* Focus visible más prominente para navegación por teclado */
+.ds-switch input:focus-visible + .ds-switch__track {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb), 0.3);
+}
+
+.ds-switch__label {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-700);
+}
+
+/* ========================================
+   FORM HELP TEXT & ERRORS
+   ======================================== */
+.ds-form-help {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+}
+
+.ds-form-error {
+    display: none;
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    color: var(--color-danger);
+}
+
+.ds-input.is-invalid ~ .ds-form-error,
+.ds-form-group.has-error .ds-form-error {
+    display: block;
+}
+
+.ds-form-success {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    color: var(--color-success);
+}
+
+/* ========================================
+   FILE INPUT
+   ======================================== */
+.ds-file-input {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.ds-file-input input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.ds-file-input__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    background-color: var(--color-gray-50);
+    border: var(--border-width-2) dashed var(--color-gray-300);
+    border-radius: var(--radius-lg);
+    color: var(--color-gray-600);
+    font-size: var(--font-size-sm);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.ds-file-input:hover .ds-file-input__label {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+/* ========================================
+   RANGE INPUT
+   ======================================== */
+.ds-range {
+    width: 100%;
+    height: 6px;
+    background: var(--color-gray-200);
+    border-radius: var(--radius-full);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.ds-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.ds-range::-webkit-slider-thumb:hover {
+    background: var(--color-primary-hover);
+}
+
+.ds-range::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    border: none;
+}
+
+/* ========================================
+   FORM LAYOUT
+   ======================================== */
+.ds-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(var(--space-3) * -1);
+    margin-right: calc(var(--space-3) * -1);
+}
+
+.ds-form-row > .ds-form-group {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+}
+
+.ds-form-row > .ds-form-group.ds-col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.ds-form-row > .ds-form-group.ds-col-4 {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+}
+
+.ds-form-row > .ds-form-group.ds-col-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+@media (max-width: 768px) {
+    .ds-form-row > .ds-form-group.ds-col-6,
+    .ds-form-row > .ds-form-group.ds-col-4,
+    .ds-form-row > .ds-form-group.ds-col-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/* ========================================
+   DARK MODE
+   ======================================== */
+[data-theme="dark"] .ds-input,
+[data-theme="dark"] .ds-select,
+[data-theme="dark"] .ds-textarea {
+    background-color: var(--color-gray-800);
+    border-color: var(--color-gray-600);
+    color: var(--color-gray-100);
+}
+
+[data-theme="dark"] .ds-input::placeholder {
+    color: var(--color-gray-500);
+}
+
+[data-theme="dark"] .ds-input:hover {
+    border-color: var(--color-gray-500);
+}
+
+[data-theme="dark"] .ds-input:disabled {
+    background-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ds-label {
+    color: var(--color-gray-300);
+}
+
+[data-theme="dark"] .ds-input-group__addon {
+    background-color: var(--color-gray-700);
+    border-color: var(--color-gray-600);
+    color: var(--color-gray-300);
+}

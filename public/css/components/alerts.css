@@ -1,0 +1,564 @@
+/**
+ * ============================================
+ * DENTAL MX - ALERTS COMPONENT
+ * ============================================
+ * Alert messages, notifications, toasts
+ * ============================================
+ */
+
+/* ========================================
+   ALERT BASE
+   ======================================== */
+.ds-alert {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    border: var(--border-width) solid transparent;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+}
+
+.ds-alert:last-child {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   ALERT ICON
+   ======================================== */
+.ds-alert__icon {
+    flex-shrink: 0;
+    font-size: var(--font-size-xl);
+    line-height: 1;
+}
+
+/* ========================================
+   ALERT CONTENT
+   ======================================== */
+.ds-alert__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.ds-alert__title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-1);
+}
+
+.ds-alert__message {
+    color: inherit;
+    opacity: 0.9;
+}
+
+.ds-alert__actions {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+}
+
+/* ========================================
+   ALERT CLOSE
+   ======================================== */
+.ds-alert__close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius);
+    color: inherit;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity var(--transition-fast), background-color var(--transition-fast);
+}
+
+.ds-alert__close:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   ALERT VARIANTS
+   ======================================== */
+
+/* Info */
+.ds-alert--info {
+    background-color: var(--color-info-light);
+    border-color: var(--color-info);
+    color: var(--color-info-dark);
+}
+
+/* Success */
+.ds-alert--success {
+    background-color: var(--color-success-light);
+    border-color: var(--color-success);
+    color: var(--color-success-dark);
+}
+
+/* Warning */
+.ds-alert--warning {
+    background-color: var(--color-warning-light);
+    border-color: var(--color-warning);
+    color: var(--color-warning-dark);
+}
+
+/* Danger / Error */
+.ds-alert--danger,
+.ds-alert--error {
+    background-color: var(--color-danger-light);
+    border-color: var(--color-danger);
+    color: var(--color-danger-dark);
+}
+
+/* Primary */
+.ds-alert--primary {
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary-dark);
+}
+
+/* Secondary / Neutral */
+.ds-alert--secondary {
+    background-color: var(--color-gray-100);
+    border-color: var(--color-gray-300);
+    color: var(--color-gray-700);
+}
+
+/* ========================================
+   ALERT SOLID VARIANTS
+   ======================================== */
+.ds-alert--solid-info {
+    background-color: var(--color-info);
+    color: var(--color-white);
+}
+
+.ds-alert--solid-success {
+    background-color: var(--color-success);
+    color: var(--color-white);
+}
+
+.ds-alert--solid-warning {
+    background-color: var(--color-warning);
+    color: var(--color-white);
+}
+
+.ds-alert--solid-danger {
+    background-color: var(--color-danger);
+    color: var(--color-white);
+}
+
+.ds-alert--solid-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* ========================================
+   ALERT WITH BORDER LEFT
+   ======================================== */
+.ds-alert--bordered {
+    border-left-width: 4px;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+/* ========================================
+   TOAST
+   ======================================== */
+.ds-toast-container {
+    position: fixed;
+    z-index: var(--z-notification);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 400px;
+    width: calc(100% - var(--space-8));
+    pointer-events: none;
+}
+
+/* Position variants */
+.ds-toast-container--top-right {
+    top: var(--space-4);
+    right: var(--space-4);
+}
+
+.ds-toast-container--top-left {
+    top: var(--space-4);
+    left: var(--space-4);
+}
+
+.ds-toast-container--top-center {
+    top: var(--space-4);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ds-toast-container--bottom-right {
+    bottom: var(--space-4);
+    right: var(--space-4);
+}
+
+.ds-toast-container--bottom-left {
+    bottom: var(--space-4);
+    left: var(--space-4);
+}
+
+.ds-toast-container--bottom-center {
+    bottom: var(--space-4);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Toast */
+.ds-toast {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    pointer-events: auto;
+    animation: toastSlideIn 0.3s ease-out;
+}
+
+.ds-toast--exiting {
+    animation: toastSlideOut 0.2s ease-in forwards;
+}
+
+@keyframes toastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes toastSlideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* Left positioned toast animations */
+.ds-toast-container--top-left .ds-toast,
+.ds-toast-container--bottom-left .ds-toast {
+    animation-name: toastSlideInLeft;
+}
+
+.ds-toast-container--top-left .ds-toast--exiting,
+.ds-toast-container--bottom-left .ds-toast--exiting {
+    animation-name: toastSlideOutLeft;
+}
+
+@keyframes toastSlideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes toastSlideOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+/* Center positioned toast animations */
+.ds-toast-container--top-center .ds-toast,
+.ds-toast-container--bottom-center .ds-toast {
+    animation-name: toastSlideInCenter;
+}
+
+@keyframes toastSlideInCenter {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ds-toast__icon {
+    flex-shrink: 0;
+    font-size: var(--font-size-xl);
+    line-height: 1;
+}
+
+.ds-toast__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.ds-toast__title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-0-5);
+}
+
+.ds-toast__message {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+}
+
+.ds-toast__close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius);
+    color: var(--color-gray-400);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.ds-toast__close:hover {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-600);
+}
+
+/* Toast variants */
+.ds-toast--success .ds-toast__icon {
+    color: var(--color-success);
+}
+
+.ds-toast--error .ds-toast__icon {
+    color: var(--color-danger);
+}
+
+.ds-toast--warning .ds-toast__icon {
+    color: var(--color-warning);
+}
+
+.ds-toast--info .ds-toast__icon {
+    color: var(--color-info);
+}
+
+/* Toast progress bar */
+.ds-toast__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    animation: toastProgress linear forwards;
+}
+
+@keyframes toastProgress {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
+
+/* ========================================
+   INLINE MESSAGE
+   ======================================== */
+.ds-message {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+    border-radius: var(--radius);
+}
+
+.ds-message--info {
+    background-color: var(--color-info-light);
+    color: var(--color-info-dark);
+}
+
+.ds-message--success {
+    background-color: var(--color-success-light);
+    color: var(--color-success-dark);
+}
+
+.ds-message--warning {
+    background-color: var(--color-warning-light);
+    color: var(--color-warning-dark);
+}
+
+.ds-message--error {
+    background-color: var(--color-danger-light);
+    color: var(--color-danger-dark);
+}
+
+/* ========================================
+   BANNER
+   ======================================== */
+.ds-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    text-align: center;
+    font-size: var(--font-size-sm);
+}
+
+.ds-banner--info {
+    background-color: var(--color-info);
+    color: var(--color-white);
+}
+
+.ds-banner--success {
+    background-color: var(--color-success);
+    color: var(--color-white);
+}
+
+.ds-banner--warning {
+    background-color: var(--color-warning);
+    color: var(--color-white);
+}
+
+.ds-banner--danger {
+    background-color: var(--color-danger);
+    color: var(--color-white);
+}
+
+.ds-banner__close {
+    position: absolute;
+    right: var(--space-4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    color: inherit;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: opacity var(--transition-fast);
+}
+
+.ds-banner__close:hover {
+    opacity: 1;
+}
+
+/* ========================================
+   CALLOUT
+   ======================================== */
+.ds-callout {
+    padding: var(--space-4);
+    background-color: var(--color-gray-50);
+    border-left: 4px solid var(--color-gray-400);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.ds-callout__title {
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-2);
+    color: var(--color-gray-900);
+}
+
+.ds-callout__content {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+}
+
+.ds-callout--info {
+    background-color: var(--color-info-light);
+    border-color: var(--color-info);
+}
+
+.ds-callout--info .ds-callout__title {
+    color: var(--color-info-dark);
+}
+
+.ds-callout--success {
+    background-color: var(--color-success-light);
+    border-color: var(--color-success);
+}
+
+.ds-callout--success .ds-callout__title {
+    color: var(--color-success-dark);
+}
+
+.ds-callout--warning {
+    background-color: var(--color-warning-light);
+    border-color: var(--color-warning);
+}
+
+.ds-callout--warning .ds-callout__title {
+    color: var(--color-warning-dark);
+}
+
+.ds-callout--danger {
+    background-color: var(--color-danger-light);
+    border-color: var(--color-danger);
+}
+
+.ds-callout--danger .ds-callout__title {
+    color: var(--color-danger-dark);
+}
+
+/* ========================================
+   DARK MODE
+   ======================================== */
+[data-theme="dark"] .ds-toast {
+    background-color: var(--color-gray-800);
+}
+
+[data-theme="dark"] .ds-toast__title {
+    color: var(--color-gray-100);
+}
+
+[data-theme="dark"] .ds-toast__message {
+    color: var(--color-gray-400);
+}
+
+[data-theme="dark"] .ds-toast__close {
+    color: var(--color-gray-500);
+}
+
+[data-theme="dark"] .ds-toast__close:hover {
+    background-color: var(--color-gray-700);
+    color: var(--color-gray-300);
+}
+
+[data-theme="dark"] .ds-callout {
+    background-color: var(--color-gray-800);
+}
+
+[data-theme="dark"] .ds-callout__title {
+    color: var(--color-gray-100);
+}
+
+[data-theme="dark"] .ds-callout__content {
+    color: var(--color-gray-400);
+}

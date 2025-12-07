@@ -1,0 +1,470 @@
+/**
+ * ============================================
+ * DENTAL MX - CARDS COMPONENT
+ * ============================================
+ * Cards, stat cards, profile cards
+ * ============================================
+ */
+
+/* ========================================
+   CARD BASE
+   ======================================== */
+.ds-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: var(--color-white);
+    background-clip: border-box;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base), 
+                transform var(--transition-base),
+                border-color var(--transition-base);
+}
+
+/* ========================================
+   CARD PARTS
+   ======================================== */
+
+/* Header */
+.ds-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+    margin-bottom: 0;
+    background-color: transparent;
+    border-bottom: var(--border-width) solid var(--color-border);
+    border-radius: calc(var(--radius-lg) - var(--border-width)) 
+                   calc(var(--radius-lg) - var(--border-width)) 0 0;
+}
+
+/* Body */
+.ds-card__body {
+    flex: 1 1 auto;
+    padding: var(--space-5);
+}
+
+.ds-card__body > :last-child {
+    margin-bottom: 0;
+}
+
+/* Footer */
+.ds-card__footer {
+    display: flex;
+    align-items: center;
+    padding: var(--space-4) var(--space-5);
+    background-color: var(--color-gray-50);
+    border-top: var(--border-width) solid var(--color-border);
+    border-radius: 0 0 calc(var(--radius-lg) - var(--border-width)) 
+                       calc(var(--radius-lg) - var(--border-width));
+}
+
+/* Title */
+.ds-card__title {
+    margin-top: 0;
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-900);
+    line-height: var(--line-height-tight);
+}
+
+/* Subtitle */
+.ds-card__subtitle {
+    margin-top: calc(var(--space-2) * -1);
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-muted);
+}
+
+/* Text */
+.ds-card__text {
+    margin-bottom: var(--space-4);
+    color: var(--color-gray-700);
+}
+
+.ds-card__text:last-child {
+    margin-bottom: 0;
+}
+
+/* Link */
+.ds-card__link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+}
+
+.ds-card__link:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+}
+
+.ds-card__link + .ds-card__link {
+    margin-left: var(--space-4);
+}
+
+/* Image */
+.ds-card__img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.ds-card__img--top {
+    border-radius: calc(var(--radius-lg) - var(--border-width)) 
+                   calc(var(--radius-lg) - var(--border-width)) 0 0;
+}
+
+.ds-card__img--bottom {
+    border-radius: 0 0 calc(var(--radius-lg) - var(--border-width)) 
+                       calc(var(--radius-lg) - var(--border-width));
+}
+
+/* Actions */
+.ds-card__actions {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+}
+
+.ds-card__actions--end {
+    margin-left: auto;
+}
+
+/* ========================================
+   CARD MODIFIERS
+   ======================================== */
+
+/* Clickable */
+.ds-card--clickable {
+    cursor: pointer;
+}
+
+.ds-card--clickable:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-gray-400);
+}
+
+.ds-card--clickable:active {
+    transform: scale(0.995);
+}
+
+/* Elevated */
+.ds-card--elevated {
+    border: none;
+    box-shadow: var(--shadow-md);
+}
+
+.ds-card--elevated:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Flat */
+.ds-card--flat {
+    box-shadow: none;
+}
+
+/* Bordered */
+.ds-card--bordered {
+    box-shadow: none;
+    border-width: var(--border-width-2);
+}
+
+/* ========================================
+   CARD COLORS
+   ======================================== */
+.ds-card--primary {
+    border-color: var(--color-primary);
+    border-left-width: 4px;
+}
+
+.ds-card--primary .ds-card__header {
+    background-color: var(--color-primary-light);
+    border-bottom-color: var(--color-primary);
+}
+
+.ds-card--success {
+    border-color: var(--color-success);
+    border-left-width: 4px;
+}
+
+.ds-card--success .ds-card__header {
+    background-color: var(--color-success-light);
+    border-bottom-color: var(--color-success);
+}
+
+.ds-card--warning {
+    border-color: var(--color-warning);
+    border-left-width: 4px;
+}
+
+.ds-card--warning .ds-card__header {
+    background-color: var(--color-warning-light);
+    border-bottom-color: var(--color-warning);
+}
+
+.ds-card--danger {
+    border-color: var(--color-danger);
+    border-left-width: 4px;
+}
+
+.ds-card--danger .ds-card__header {
+    background-color: var(--color-danger-light);
+    border-bottom-color: var(--color-danger);
+}
+
+.ds-card--info {
+    border-color: var(--color-info);
+    border-left-width: 4px;
+}
+
+.ds-card--info .ds-card__header {
+    background-color: var(--color-info-light);
+    border-bottom-color: var(--color-info);
+}
+
+/* ========================================
+   STAT CARD
+   ======================================== */
+.ds-stat-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-5);
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: var(--border-width) solid var(--color-border);
+    transition: all var(--transition-base);
+}
+
+.ds-stat-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.ds-stat-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-2xl);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.ds-stat-card__value {
+    display: block;
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-900);
+    line-height: 1;
+    margin-bottom: var(--space-2);
+}
+
+.ds-stat-card__label {
+    font-size: var(--font-size-sm);
+    color: var(--color-muted);
+}
+
+.ds-stat-card__trend {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: var(--space-2);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.ds-stat-card__trend--up {
+    color: var(--color-success);
+}
+
+.ds-stat-card__trend--down {
+    color: var(--color-danger);
+}
+
+/* Stat Card Colors */
+.ds-stat-card--primary .ds-stat-card__icon {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.ds-stat-card--success .ds-stat-card__icon {
+    background-color: var(--color-success-light);
+    color: var(--color-success);
+}
+
+.ds-stat-card--warning .ds-stat-card__icon {
+    background-color: var(--color-warning-light);
+    color: var(--color-warning);
+}
+
+.ds-stat-card--danger .ds-stat-card__icon {
+    background-color: var(--color-danger-light);
+    color: var(--color-danger);
+}
+
+.ds-stat-card--info .ds-stat-card__icon {
+    background-color: var(--color-info-light);
+    color: var(--color-info);
+}
+
+/* Stat Card Horizontal Layout */
+.ds-stat-card--horizontal {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.ds-stat-card--horizontal .ds-stat-card__icon {
+    margin-bottom: 0;
+}
+
+.ds-stat-card--horizontal .ds-stat-card__content {
+    flex: 1;
+}
+
+/* ========================================
+   PROFILE CARD
+   ======================================== */
+.ds-profile-card {
+    text-align: center;
+    padding: var(--space-6);
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: var(--border-width) solid var(--color-border);
+}
+
+.ds-profile-card__avatar {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--space-4);
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    border: 3px solid var(--color-primary);
+}
+
+.ds-profile-card__avatar--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+}
+
+.ds-profile-card__name {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-1);
+}
+
+.ds-profile-card__role {
+    font-size: var(--font-size-sm);
+    color: var(--color-muted);
+    margin-bottom: var(--space-4);
+}
+
+.ds-profile-card__stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: var(--border-width) solid var(--color-border);
+}
+
+.ds-profile-card__stat {
+    text-align: center;
+}
+
+.ds-profile-card__stat-value {
+    display: block;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-900);
+}
+
+.ds-profile-card__stat-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-muted);
+    text-transform: uppercase;
+}
+
+/* ========================================
+   CARD GRID
+   ======================================== */
+.ds-card-grid {
+    display: grid;
+    gap: var(--space-6);
+}
+
+.ds-card-grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.ds-card-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.ds-card-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .ds-card-grid--4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .ds-card-grid--3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .ds-card-grid--2,
+    .ds-card-grid--3,
+    .ds-card-grid--4 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================
+   DARK MODE
+   ======================================== */
+[data-theme="dark"] .ds-card,
+[data-theme="dark"] .ds-stat-card,
+[data-theme="dark"] .ds-profile-card {
+    background-color: var(--color-gray-800);
+    border-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ds-card__header {
+    border-bottom-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ds-card__footer {
+    background-color: var(--color-gray-900);
+    border-top-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ds-card__title,
+[data-theme="dark"] .ds-stat-card__value,
+[data-theme="dark"] .ds-profile-card__name {
+    color: var(--color-gray-100);
+}
+
+[data-theme="dark"] .ds-card__text,
+[data-theme="dark"] .ds-stat-card__label,
+[data-theme="dark"] .ds-profile-card__role {
+    color: var(--color-gray-400);
+}

@@ -1,0 +1,457 @@
+/**
+ * ============================================
+ * DENTAL MX - TABLES COMPONENT
+ * ============================================
+ * Data tables, responsive tables, sortable
+ * ============================================
+ */
+
+/* ========================================
+   TABLE CONTAINER
+   ======================================== */
+.ds-table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ========================================
+   TABLE BASE
+   ======================================== */
+.ds-table {
+    width: 100%;
+    margin-bottom: var(--space-4);
+    color: var(--color-gray-900);
+    vertical-align: top;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.ds-table th,
+.ds-table td {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: var(--border-width) solid var(--color-gray-200);
+}
+
+.ds-table th {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-700);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: var(--color-gray-50);
+    white-space: nowrap;
+}
+
+.ds-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ========================================
+   TABLE VARIANTS
+   ======================================== */
+
+/* Striped */
+.ds-table--striped tbody tr:nth-of-type(odd) {
+    background-color: var(--color-gray-50);
+}
+
+/* Hover */
+.ds-table--hover tbody tr:hover {
+    background-color: var(--color-gray-100);
+    transition: background-color var(--transition-fast);
+}
+
+/* Bordered */
+.ds-table--bordered {
+    border: var(--border-width) solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.ds-table--bordered th,
+.ds-table--bordered td {
+    border: var(--border-width) solid var(--color-gray-200);
+}
+
+/* Compact */
+.ds-table--compact th,
+.ds-table--compact td {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+}
+
+/* Borderless */
+.ds-table--borderless th,
+.ds-table--borderless td {
+    border: none;
+}
+
+/* ========================================
+   TABLE ALIGNMENT
+   ======================================== */
+.ds-table td.text-center,
+.ds-table th.text-center {
+    text-align: center;
+}
+
+.ds-table td.text-right,
+.ds-table th.text-right {
+    text-align: right;
+}
+
+.ds-table td.text-nowrap,
+.ds-table th.text-nowrap {
+    white-space: nowrap;
+}
+
+/* ========================================
+   TABLE SORTABLE
+   ======================================== */
+.ds-table--sortable th {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    padding-right: var(--space-8);
+}
+
+.ds-table--sortable th::after {
+    content: '⇅';
+    position: absolute;
+    right: var(--space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.3;
+    font-size: var(--font-size-xs);
+}
+
+.ds-table--sortable th.sorted-asc::after {
+    content: '↑';
+    opacity: 1;
+    color: var(--color-primary);
+}
+
+.ds-table--sortable th.sorted-desc::after {
+    content: '↓';
+    opacity: 1;
+    color: var(--color-primary);
+}
+
+.ds-table--sortable th:hover {
+    background-color: var(--color-gray-100);
+}
+
+/* Focus visible para encabezados ordenables */
+.ds-table--sortable th:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+}
+
+/* ========================================
+   TABLE SELECTABLE
+   ======================================== */
+.ds-table--selectable tbody tr {
+    cursor: pointer;
+}
+
+/* Focus visible para filas seleccionables (navegación por teclado) */
+.ds-table--selectable tbody tr:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+}
+
+.ds-table--selectable tbody tr.selected {
+    background-color: var(--color-primary-light);
+}
+
+.ds-table--selectable tbody tr.selected:hover {
+    background-color: rgba(var(--color-primary-rgb), 0.15);
+}
+
+/* Checkbox column */
+.ds-table .ds-table__checkbox {
+    width: 40px;
+    text-align: center;
+    padding-left: var(--space-3);
+    padding-right: var(--space-2);
+}
+
+/* ========================================
+   TABLE ACTIONS
+   ======================================== */
+.ds-table__actions {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: flex-end;
+}
+
+.ds-table__actions .ds-btn {
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-sm);
+}
+
+/* ========================================
+   TABLE STATUS
+   ======================================== */
+.ds-table__status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--radius-full);
+}
+
+.ds-table__status--active {
+    background-color: var(--color-success-light);
+    color: var(--color-success-dark);
+}
+
+.ds-table__status--inactive {
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-600);
+}
+
+.ds-table__status--pending {
+    background-color: var(--color-warning-light);
+    color: var(--color-warning-dark);
+}
+
+.ds-table__status--error {
+    background-color: var(--color-danger-light);
+    color: var(--color-danger-dark);
+}
+
+/* ========================================
+   TABLE AVATAR
+   ======================================== */
+.ds-table__avatar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.ds-table__avatar img {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+}
+
+.ds-table__avatar-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.ds-table__avatar-name {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-900);
+}
+
+.ds-table__avatar-email {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+}
+
+/* ========================================
+   TABLE EMPTY STATE
+   ======================================== */
+.ds-table__empty {
+    text-align: center;
+    padding: var(--space-12) var(--space-4);
+    color: var(--color-gray-500);
+}
+
+.ds-table__empty-icon {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-4);
+    opacity: 0.5;
+}
+
+.ds-table__empty-text {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-2);
+}
+
+.ds-table__empty-subtext {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-400);
+}
+
+/* ========================================
+   TABLE LOADING
+   ======================================== */
+.ds-table--loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.ds-table--loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========================================
+   TABLE PAGINATION
+   ======================================== */
+.ds-table-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) 0;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+.ds-table-pagination__info {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+}
+
+.ds-table-pagination__nav {
+    display: flex;
+    gap: var(--space-1);
+}
+
+.ds-table-pagination__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-700);
+    background-color: var(--color-white);
+    border: var(--border-width) solid var(--color-gray-300);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.ds-table-pagination__btn:hover:not(:disabled) {
+    background-color: var(--color-gray-100);
+    border-color: var(--color-gray-400);
+}
+
+.ds-table-pagination__btn.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.ds-table-pagination__btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ========================================
+   RESPONSIVE TABLE
+   ======================================== */
+@media (max-width: 768px) {
+    /* Stack on mobile */
+    .ds-table--responsive thead {
+        display: none;
+    }
+    
+    .ds-table--responsive tbody tr {
+        display: block;
+        margin-bottom: var(--space-3);
+        padding: var(--space-3);
+        background-color: var(--color-white);
+        border: var(--border-width) solid var(--color-gray-200);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .ds-table--responsive tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-2) 0;
+        border: none;
+        border-bottom: var(--border-width) solid var(--color-gray-100);
+    }
+    
+    .ds-table--responsive tbody td:last-child {
+        border-bottom: none;
+    }
+    
+    .ds-table--responsive tbody td::before {
+        content: attr(data-label);
+        font-weight: var(--font-weight-semibold);
+        font-size: var(--font-size-sm);
+        color: var(--color-gray-600);
+        flex-shrink: 0;
+        margin-right: var(--space-3);
+    }
+    
+    .ds-table--responsive .ds-table__actions {
+        justify-content: flex-start;
+        padding-top: var(--space-2);
+    }
+    
+    .ds-table-pagination {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* ========================================
+   DARK MODE
+   ======================================== */
+[data-theme="dark"] .ds-table {
+    color: var(--color-gray-100);
+}
+
+[data-theme="dark"] .ds-table th {
+    background-color: var(--color-gray-800);
+    color: var(--color-gray-300);
+    border-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ds-table td {
+    border-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ds-table--striped tbody tr:nth-of-type(odd) {
+    background-color: var(--color-gray-800);
+}
+
+[data-theme="dark"] .ds-table--hover tbody tr:hover {
+    background-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ds-table--bordered {
+    border-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ds-table__avatar-name {
+    color: var(--color-gray-100);
+}
+
+[data-theme="dark"] .ds-table--responsive tbody tr {
+    background-color: var(--color-gray-800);
+    border-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ds-table-pagination__btn {
+    background-color: var(--color-gray-800);
+    border-color: var(--color-gray-600);
+    color: var(--color-gray-300);
+}
+
+[data-theme="dark"] .ds-table-pagination__btn:hover:not(:disabled) {
+    background-color: var(--color-gray-700);
+}

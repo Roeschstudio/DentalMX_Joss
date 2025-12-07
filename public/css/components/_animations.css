@@ -1,0 +1,461 @@
+/**
+ * ============================================
+ * DENTAL MX - ANIMATIONS SYSTEM
+ * ============================================
+ * Keyframes y clases de animación reutilizables
+ * Siguiendo estándares Material Design + UX
+ * ============================================
+ */
+
+/* ========================================
+   KEYFRAMES - ENTRADA (Entrance)
+   ======================================== */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes scaleInCenter {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   KEYFRAMES - SALIDA (Exit)
+   ======================================== */
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fadeOutUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+}
+
+@keyframes fadeOutDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+}
+
+@keyframes scaleOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   KEYFRAMES - FEEDBACK / ESTADOS
+   ======================================== */
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes pulseScale {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   KEYFRAMES - SKELETON / LOADING
+   ======================================== */
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes skeletonLoading {
+    0% {
+        background-color: var(--color-gray-200);
+    }
+    50% {
+        background-color: var(--color-gray-300);
+    }
+    100% {
+        background-color: var(--color-gray-200);
+    }
+}
+
+/* ========================================
+   KEYFRAMES - SIDEBAR ESPECÍFICOS
+   ======================================== */
+
+@keyframes sidebarExpand {
+    from {
+        width: var(--sidebar-width-collapsed);
+    }
+    to {
+        width: var(--sidebar-width);
+    }
+}
+
+@keyframes sidebarCollapse {
+    from {
+        width: var(--sidebar-width);
+    }
+    to {
+        width: var(--sidebar-width-collapsed);
+    }
+}
+
+@keyframes labelFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes labelFadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-8px);
+    }
+}
+
+/* ========================================
+   CLASES DE ANIMACIÓN UTILITARIAS
+   ======================================== */
+
+/* Fade */
+.ds-fade-in {
+    animation: fadeIn var(--duration-normal) var(--ease-decelerate) forwards;
+}
+
+.ds-fade-out {
+    animation: fadeOut var(--duration-fast) var(--ease-accelerate) forwards;
+}
+
+.ds-fade-in-up {
+    animation: fadeInUp var(--duration-normal) var(--ease-decelerate) forwards;
+}
+
+.ds-fade-in-down {
+    animation: fadeInDown var(--duration-normal) var(--ease-decelerate) forwards;
+}
+
+/* Scale */
+.ds-scale-in {
+    animation: scaleIn var(--duration-normal) var(--ease-decelerate) forwards;
+}
+
+.ds-scale-out {
+    animation: scaleOut var(--duration-fast) var(--ease-accelerate) forwards;
+}
+
+/* Slide */
+.ds-slide-in-right {
+    animation: slideInRight var(--duration-normal) var(--ease-decelerate) forwards;
+}
+
+.ds-slide-in-left {
+    animation: slideInLeft var(--duration-normal) var(--ease-decelerate) forwards;
+}
+
+.ds-slide-in-up {
+    animation: slideInUp var(--duration-normal) var(--ease-decelerate) forwards;
+}
+
+.ds-slide-in-down {
+    animation: slideInDown var(--duration-normal) var(--ease-decelerate) forwards;
+}
+
+/* Feedback */
+.ds-pulse {
+    animation: pulse 2s var(--ease-in-out) infinite;
+}
+
+.ds-shake {
+    animation: shake 0.5s var(--ease-standard);
+}
+
+.ds-bounce {
+    animation: bounce 0.6s var(--ease-bounce);
+}
+
+.ds-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Skeleton Loading */
+.ds-skeleton {
+    animation: skeletonLoading 1.5s ease-in-out infinite;
+    background-color: var(--color-gray-200);
+    border-radius: var(--radius);
+}
+
+.ds-shimmer {
+    background: linear-gradient(
+        90deg,
+        var(--color-gray-200) 25%,
+        var(--color-gray-100) 50%,
+        var(--color-gray-200) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* ========================================
+   MODIFICADORES DE DURACIÓN
+   ======================================== */
+
+.ds-anim-fast {
+    animation-duration: var(--duration-fast) !important;
+}
+
+.ds-anim-normal {
+    animation-duration: var(--duration-normal) !important;
+}
+
+.ds-anim-slow {
+    animation-duration: var(--duration-slow) !important;
+}
+
+/* ========================================
+   MODIFICADORES DE DELAY
+   ======================================== */
+
+.ds-delay-100 { animation-delay: 100ms; }
+.ds-delay-200 { animation-delay: 200ms; }
+.ds-delay-300 { animation-delay: 300ms; }
+.ds-delay-400 { animation-delay: 400ms; }
+.ds-delay-500 { animation-delay: 500ms; }
+
+/* ========================================
+   HOVER TRANSITIONS MEJORADAS
+   ======================================== */
+
+.ds-hover-lift {
+    transition: transform var(--duration-fast) var(--ease-decelerate),
+                box-shadow var(--duration-fast) var(--ease-decelerate);
+}
+
+.ds-hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.ds-hover-grow {
+    transition: transform var(--duration-fast) var(--ease-elastic);
+}
+
+.ds-hover-grow:hover {
+    transform: scale(1.02);
+}
+
+.ds-hover-shrink:active {
+    transform: scale(0.98);
+}
+
+/* ========================================
+   PREFERENCIAS DE MOVIMIENTO REDUCIDO
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .ds-fade-in,
+    .ds-fade-out,
+    .ds-scale-in,
+    .ds-scale-out,
+    .ds-slide-in-right,
+    .ds-slide-in-left {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}

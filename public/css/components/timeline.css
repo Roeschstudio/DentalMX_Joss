@@ -1,0 +1,822 @@
+/**
+ * ============================================
+ * DENTAL MX - Timeline Component
+ * ============================================
+ * Componente para visualizar historial de
+ * actividades en formato timeline vertical
+ * ============================================
+ */
+
+/* ========================================
+   PATIENT HEADER
+   ======================================== */
+.ds-patient-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border-radius: var(--radius-lg);
+    color: white;
+    margin-bottom: var(--space-6);
+}
+
+.ds-patient-header__info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.ds-patient-header__details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.ds-patient-header__name {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin: 0;
+}
+
+.ds-patient-header__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    font-size: var(--font-size-sm);
+    opacity: 0.9;
+}
+
+.ds-patient-header__meta-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.ds-patient-header__actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.ds-patient-header__actions .ds-btn--outline {
+    border-color: rgba(255,255,255,0.5);
+    color: white;
+}
+
+.ds-patient-header__actions .ds-btn--outline:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-color: white;
+}
+
+/* ========================================
+   STATS GRID
+   ======================================== */
+.ds-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.ds-stat-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ds-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.ds-stat-card__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border-radius: var(--radius-md);
+}
+
+.ds-stat-card__icon--primary {
+    background-color: var(--color-primary-light);
+}
+
+.ds-stat-card__icon--success {
+    background-color: var(--color-success-light);
+}
+
+.ds-stat-card__icon--warning {
+    background-color: var(--color-warning-light);
+}
+
+.ds-stat-card__icon--info {
+    background-color: var(--color-info-light);
+}
+
+.ds-stat-card__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.ds-stat-card__value {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-900);
+    line-height: 1.2;
+}
+
+.ds-stat-card__label {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+}
+
+/* ========================================
+   FILTER FORM
+   ======================================== */
+.ds-filter-form__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: flex-end;
+}
+
+.ds-filter-form__row .ds-form-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.ds-filter-form__row .ds-form-group--actions {
+    display: flex;
+    gap: var(--space-2);
+    flex: 0 0 auto;
+}
+
+/* ========================================
+   TIMELINE
+   ======================================== */
+.ds-timeline {
+    position: relative;
+    padding-left: var(--space-8);
+}
+
+.ds-timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-gray-200);
+}
+
+.ds-timeline__date-separator {
+    position: relative;
+    margin: var(--space-6) 0;
+    margin-left: calc(-1 * var(--space-8));
+}
+
+.ds-timeline__date {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-lg);
+    line-height: 1.2;
+}
+
+.ds-timeline__date small {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+
+.ds-timeline__item {
+    position: relative;
+    padding-bottom: var(--space-6);
+}
+
+.ds-timeline__marker {
+    position: absolute;
+    left: calc(-1 * var(--space-8) - 10px);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: white;
+    border: 3px solid var(--color-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    z-index: 1;
+}
+
+.ds-timeline__marker--primary {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-light);
+}
+
+.ds-timeline__marker--success {
+    border-color: var(--color-success);
+    background-color: var(--color-success-light);
+}
+
+.ds-timeline__marker--warning {
+    border-color: var(--color-warning);
+    background-color: var(--color-warning-light);
+}
+
+.ds-timeline__marker--info {
+    border-color: var(--color-info);
+    background-color: var(--color-info-light);
+}
+
+.ds-timeline__marker--secondary {
+    border-color: var(--color-gray-400);
+    background-color: var(--color-gray-100);
+}
+
+.ds-timeline__marker--danger {
+    border-color: var(--color-danger);
+    background-color: var(--color-danger-light);
+}
+
+.ds-timeline__content {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-gray-200);
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.ds-timeline__content:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-light);
+}
+
+.ds-timeline__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.ds-timeline__time {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+}
+
+.ds-timeline__description {
+    color: var(--color-gray-700);
+    margin-bottom: var(--space-3);
+    line-height: 1.6;
+}
+
+.ds-timeline__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-gray-100);
+}
+
+.ds-timeline__author {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+}
+
+/* ========================================
+   STATS LIST
+   ======================================== */
+.ds-stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.ds-stats-list__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--color-gray-700);
+    transition: background-color 0.2s;
+}
+
+a.ds-stats-list__item:hover {
+    background-color: var(--color-gray-50);
+}
+
+.ds-stats-list__icon {
+    font-size: var(--font-size-lg);
+}
+
+.ds-stats-list__label {
+    flex: 1;
+    font-size: var(--font-size-sm);
+}
+
+/* ========================================
+   TREATMENT LIST & CARDS
+   ======================================== */
+.ds-treatment-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.ds-treatment-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3);
+    background: var(--color-gray-50);
+    border-radius: var(--radius-md);
+}
+
+.ds-treatment-item__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.ds-treatment-item__name {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-800);
+}
+
+.ds-treatment-item__tooth {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+}
+
+/* Treatment Cards */
+.ds-treatment-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.ds-treatment-card {
+    background: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.ds-treatment-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.ds-treatment-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: var(--space-4);
+    background: var(--color-gray-50);
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+.ds-treatment-card__title h4 {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    color: var(--color-gray-900);
+}
+
+.ds-treatment-card__tooth {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+    margin-top: var(--space-1);
+}
+
+.ds-treatment-card__body {
+    padding: var(--space-4);
+}
+
+.ds-treatment-card__info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.ds-treatment-card__info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.ds-treatment-card__label {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ds-treatment-card__value {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-800);
+}
+
+.ds-treatment-card__notes {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    padding: var(--space-3);
+    background: var(--color-gray-50);
+    border-radius: var(--radius-md);
+    margin: 0;
+}
+
+.ds-treatment-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border-top: 1px solid var(--color-gray-200);
+    background: var(--color-gray-50);
+}
+
+.ds-treatment-card__financial {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    font-size: var(--font-size-sm);
+}
+
+.ds-treatment-card__cost {
+    font-weight: var(--font-weight-semibold);
+}
+
+.ds-treatment-card__actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+/* ========================================
+   FINANCIAL SUMMARY
+   ======================================== */
+.ds-financial-summary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.ds-financial-summary__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2) 0;
+}
+
+.ds-financial-summary__row--success {
+    color: var(--color-success);
+}
+
+.ds-financial-summary__row--warning {
+    color: var(--color-warning);
+}
+
+/* ========================================
+   FILTER TABS
+   ======================================== */
+.ds-filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.ds-filter-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    color: var(--color-gray-600);
+    background: var(--color-gray-100);
+    transition: all 0.2s;
+}
+
+.ds-filter-tab:hover {
+    background: var(--color-gray-200);
+    color: var(--color-gray-800);
+}
+
+.ds-filter-tab--active {
+    background: var(--color-primary);
+    color: white;
+}
+
+/* ========================================
+   DETAIL SECTIONS
+   ======================================== */
+.ds-detail-section {
+    margin-bottom: var(--space-6);
+}
+
+.ds-detail-section__title {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-800);
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+.ds-detail-section__content {
+    color: var(--color-gray-700);
+    line-height: 1.7;
+}
+
+/* ========================================
+   INFO GRID
+   ======================================== */
+.ds-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+}
+
+.ds-info-grid__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.ds-info-grid__label {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: var(--font-weight-medium);
+}
+
+.ds-info-grid__value {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-800);
+}
+
+.ds-info-grid__full {
+    grid-column: 1 / -1;
+}
+
+/* ========================================
+   DATA CARD
+   ======================================== */
+.ds-data-card {
+    background: var(--color-gray-50);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+}
+
+/* ========================================
+   FILE LIST
+   ======================================== */
+.ds-file-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.ds-file-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-gray-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-gray-200);
+}
+
+.ds-file-item__icon {
+    font-size: var(--font-size-xl);
+}
+
+.ds-file-item__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.ds-file-item__name {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-800);
+}
+
+.ds-file-item__meta {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-500);
+}
+
+/* ========================================
+   FILE UPLOAD
+   ======================================== */
+.ds-file-upload {
+    position: relative;
+}
+
+.ds-file-upload__input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.ds-file-upload__label {
+    display: block;
+    padding: var(--space-3);
+    background: var(--color-gray-100);
+    border: 2px dashed var(--color-gray-300);
+    border-radius: var(--radius-md);
+    text-align: center;
+    color: var(--color-gray-600);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ds-file-upload__label:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary-light);
+}
+
+/* ========================================
+   PATIENT MINI
+   ======================================== */
+.ds-patient-mini {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.ds-patient-mini__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.ds-patient-mini__info span {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+}
+
+/* ========================================
+   ACTION LIST
+   ======================================== */
+.ds-action-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.ds-action-list__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-700);
+    text-decoration: none;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.ds-action-list__item:hover {
+    background: var(--color-gray-100);
+}
+
+.ds-action-list__item--danger {
+    color: var(--color-danger);
+}
+
+.ds-action-list__item--danger:hover {
+    background: var(--color-danger-light);
+}
+
+/* ========================================
+   HELPER CLASSES
+   ======================================== */
+.ds-text-success {
+    color: var(--color-success) !important;
+}
+
+.ds-text-warning {
+    color: var(--color-warning) !important;
+}
+
+.ds-text-muted {
+    color: var(--color-gray-500) !important;
+}
+
+.ds-text-nowrap {
+    white-space: nowrap;
+}
+
+.ds-link {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.ds-link:hover {
+    text-decoration: underline;
+}
+
+.ds-code {
+    font-family: monospace;
+    background: var(--color-gray-100);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+    .ds-patient-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .ds-patient-header__info {
+        flex-direction: column;
+    }
+    
+    .ds-patient-header__meta {
+        justify-content: center;
+    }
+    
+    .ds-patient-header__actions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .ds-timeline {
+        padding-left: var(--space-6);
+    }
+    
+    .ds-timeline::before {
+        left: 15px;
+    }
+    
+    .ds-timeline__marker {
+        left: calc(-1 * var(--space-6) - 7px);
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+    
+    .ds-timeline__date-separator {
+        margin-left: calc(-1 * var(--space-6));
+    }
+    
+    .ds-filter-form__row {
+        flex-direction: column;
+    }
+    
+    .ds-filter-form__row .ds-form-group {
+        width: 100%;
+    }
+    
+    .ds-treatment-card__footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .ds-treatment-card__actions {
+        justify-content: flex-end;
+    }
+}

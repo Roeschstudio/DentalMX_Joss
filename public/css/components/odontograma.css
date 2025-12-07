@@ -1,0 +1,688 @@
+/**
+ * ============================================
+ * DENTAL MX - ODONTOGRAMA COMPONENT
+ * ============================================
+ * Estilos para el odontograma interactivo
+ * Implementa Sistema FDI (Federación Dental Internacional)
+ * ============================================
+ */
+
+/* ========================================
+   CONTENEDOR PRINCIPAL
+   ======================================== */
+.odontograma-container {
+    padding: var(--space-4);
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+
+.odontograma-wrapper {
+    overflow-x: auto;
+    padding: var(--space-2);
+}
+
+/* ========================================
+   TABLA DEL ODONTOGRAMA
+   ======================================== */
+.odontograma-table {
+    border-collapse: separate;
+    border-spacing: var(--space-1);
+    margin: 0 auto;
+}
+
+.odontograma-table td {
+    padding: var(--space-1);
+    vertical-align: top;
+    text-align: center;
+}
+
+/* ========================================
+   DIENTE INDIVIDUAL
+   ======================================== */
+.odontograma-diente {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+}
+
+.odontograma-diente:hover {
+    transform: scale(1.05);
+}
+
+.odontograma-diente--ausente {
+    opacity: 0.4;
+}
+
+.odontograma-diente--ausente .diente-svg {
+    filter: grayscale(100%);
+}
+
+.odontograma-diente__numero {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-700);
+    text-align: center;
+    min-width: 24px;
+}
+
+.odontograma-diente--selected .odontograma-diente__numero {
+    color: var(--color-primary);
+}
+
+/* ========================================
+   SVG DEL DIENTE
+   ======================================== */
+.diente-svg {
+    width: 50px;
+    height: 50px;
+    transition: all var(--transition-fast);
+}
+
+.diente-svg:hover {
+    filter: brightness(0.95);
+}
+
+.diente-svg .superficie {
+    stroke: var(--color-gray-400);
+    stroke-width: 1;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.diente-svg .superficie:hover {
+    stroke: var(--color-primary);
+    stroke-width: 2;
+    filter: brightness(0.9);
+}
+
+.diente-svg .superficie--selected {
+    stroke: var(--color-primary-dark);
+    stroke-width: 2;
+}
+
+/* Colores de estados de superficies */
+.superficie-sano,
+.superficie-S001 {
+    fill: #4CAF50;
+}
+
+.superficie-cariado,
+.superficie-S002 {
+    fill: #F44336;
+}
+
+.superficie-obturado,
+.superficie-S003 {
+    fill: #2196F3;
+}
+
+.superficie-fracturado,
+.superficie-S004 {
+    fill: #FF9800;
+}
+
+.superficie-desgastado,
+.superficie-S005 {
+    fill: #9E9E9E;
+}
+
+.superficie-corona,
+.superficie-S006 {
+    fill: #FFD700;
+}
+
+.superficie-incrustacion,
+.superficie-S007 {
+    fill: #FF6B35;
+}
+
+.superficie-sellante,
+.superficie-S008 {
+    fill: #9C27B0;
+}
+
+.superficie-erosionado,
+.superficie-S009 {
+    fill: #795548;
+}
+
+.superficie-pigmentado,
+.superficie-S010 {
+    fill: #607D8B;
+}
+
+/* ========================================
+   INDICADORES DE ESTADO DEL DIENTE
+   ======================================== */
+.odontograma-diente__indicador {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--color-white);
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.odontograma-diente__indicador--extraido {
+    background-color: var(--color-danger);
+}
+
+.odontograma-diente__indicador--implante {
+    background-color: var(--color-info);
+}
+
+.odontograma-diente__indicador--endodoncia {
+    background-color: var(--color-warning);
+}
+
+.odontograma-diente__indicador--corona {
+    background-color: var(--color-success);
+}
+
+/* ========================================
+   LEYENDA
+   ======================================== */
+.odontograma-leyenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--color-gray-50);
+    border-radius: var(--radius);
+    margin-top: var(--space-4);
+}
+
+.odontograma-leyenda__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+}
+
+.odontograma-leyenda__color {
+    width: 16px;
+    height: 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-gray-300);
+    flex-shrink: 0;
+}
+
+.odontograma-leyenda__label {
+    color: var(--color-gray-700);
+}
+
+/* ========================================
+   SEPARADORES DE CUADRANTES
+   ======================================== */
+.odontograma-separador {
+    width: 2px;
+    background: var(--color-gray-300);
+    margin: 0 var(--space-2);
+}
+
+.odontograma-separador--horizontal {
+    height: 2px;
+    width: 100%;
+    margin: var(--space-3) 0;
+}
+
+.odontograma-linea-media {
+    border-left: 2px dashed var(--color-primary-light);
+    height: 100%;
+}
+
+/* ========================================
+   CUADRANTES
+   ======================================== */
+.odontograma-cuadrante {
+    display: flex;
+    gap: var(--space-1);
+}
+
+.odontograma-cuadrante--superior {
+    margin-bottom: var(--space-2);
+}
+
+.odontograma-cuadrante--inferior {
+    margin-top: var(--space-2);
+}
+
+.odontograma-cuadrante__label {
+    position: absolute;
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-500);
+    font-weight: var(--font-weight-medium);
+}
+
+/* ========================================
+   ARCADAS
+   ======================================== */
+.odontograma-arcada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) 0;
+}
+
+.odontograma-arcada__label {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-500);
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ========================================
+   FILAS DE DIENTES
+   ======================================== */
+.odontograma-fila {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-1);
+    padding: var(--space-2) 0;
+}
+
+.odontograma-fila--adultos-superior,
+.odontograma-fila--adultos-inferior {
+    /* Dientes permanentes - sin estilos adicionales */
+    display: flex;
+}
+
+.odontograma-fila--infantiles-superior,
+.odontograma-fila--infantiles-inferior {
+    /* Dientes temporales */
+    padding: var(--space-1) var(--space-8);
+}
+
+/* ========================================
+   MODAL DE EDICIÓN
+   ======================================== */
+.odontograma-modal {
+    max-width: 600px;
+}
+
+.odontograma-modal__diente-preview {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-4);
+    background: var(--color-gray-50);
+    border-radius: var(--radius);
+    margin-bottom: var(--space-4);
+}
+
+.odontograma-modal__diente-preview .diente-svg {
+    width: 120px;
+    height: 120px;
+}
+
+.odontograma-modal__estados {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--space-2);
+}
+
+.odontograma-modal__estado-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: 2px solid var(--color-gray-200);
+    border-radius: var(--radius);
+    background: var(--color-white);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: var(--font-size-sm);
+}
+
+.odontograma-modal__estado-btn:hover {
+    border-color: var(--color-primary-light);
+    background: var(--color-primary-lightest);
+}
+
+.odontograma-modal__estado-btn--active {
+    border-color: var(--color-primary);
+    background: var(--color-primary-light);
+}
+
+.odontograma-modal__estado-color {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+/* ========================================
+   SELECTOR DE SUPERFICIE
+   ======================================== */
+.superficie-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+}
+
+.superficie-selector__diente {
+    width: 150px;
+    height: 150px;
+}
+
+.superficie-selector__info {
+    text-align: center;
+}
+
+.superficie-selector__nombre {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-900);
+}
+
+.superficie-selector__descripcion {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+}
+
+/* ========================================
+   HISTORIAL DEL DIENTE
+   ======================================== */
+.odontograma-historial {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.odontograma-historial__item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--color-gray-100);
+}
+
+.odontograma-historial__item:last-child {
+    border-bottom: none;
+}
+
+.odontograma-historial__fecha {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-500);
+    white-space: nowrap;
+}
+
+.odontograma-historial__descripcion {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-700);
+    flex: 1;
+}
+
+.odontograma-historial__cambio {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.odontograma-historial__valor {
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+}
+
+.odontograma-historial__valor--anterior {
+    background: var(--color-gray-100);
+    color: var(--color-gray-600);
+}
+
+.odontograma-historial__valor--nuevo {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+}
+
+/* ========================================
+   RESUMEN / ESTADÍSTICAS
+   ======================================== */
+.odontograma-resumen {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--color-gray-50);
+    border-radius: var(--radius);
+}
+
+.odontograma-resumen__item {
+    text-align: center;
+}
+
+.odontograma-resumen__valor {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+}
+
+.odontograma-resumen__label {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+}
+
+/* ========================================
+   HERRAMIENTAS / TOOLBAR
+   ======================================== */
+.odontograma-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-gray-50);
+    border-radius: var(--radius);
+    margin-bottom: var(--space-4);
+}
+
+.odontograma-toolbar__grupo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.odontograma-toolbar__label {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+}
+
+/* ========================================
+   ZOOM CONTROLS
+   ======================================== */
+.odontograma-zoom {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.odontograma-zoom__btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius);
+    background: var(--color-white);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.odontograma-zoom__btn:hover {
+    background: var(--color-gray-50);
+    border-color: var(--color-primary);
+}
+
+.odontograma-zoom__nivel {
+    min-width: 40px;
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+}
+
+/* ========================================
+   ESTADOS DE CARGA Y VACÍO
+   ======================================== */
+.odontograma-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12);
+    gap: var(--space-4);
+}
+
+.odontograma-loading__spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--color-gray-200);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.odontograma-loading__texto {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========================================
+   MODO OSCURO
+   ======================================== */
+[data-theme="dark"] .odontograma-container {
+    background: var(--color-gray-800);
+}
+
+[data-theme="dark"] .odontograma-diente__numero {
+    color: var(--color-gray-300);
+}
+
+[data-theme="dark"] .odontograma-leyenda {
+    background: var(--color-gray-700);
+}
+
+[data-theme="dark"] .odontograma-leyenda__label {
+    color: var(--color-gray-300);
+}
+
+[data-theme="dark"] .diente-svg .superficie {
+    stroke: var(--color-gray-500);
+}
+
+[data-theme="dark"] .odontograma-modal__estado-btn {
+    background: var(--color-gray-700);
+    border-color: var(--color-gray-600);
+    color: var(--color-gray-200);
+}
+
+[data-theme="dark"] .odontograma-modal__estado-btn:hover {
+    background: var(--color-gray-600);
+}
+
+[data-theme="dark"] .odontograma-resumen {
+    background: var(--color-gray-700);
+}
+
+[data-theme="dark"] .odontograma-toolbar {
+    background: var(--color-gray-700);
+}
+
+[data-theme="dark"] .odontograma-historial__descripcion {
+    color: var(--color-gray-300);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+    .diente-svg {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .odontograma-diente__numero {
+        font-size: 10px;
+    }
+    
+    .odontograma-leyenda {
+        gap: var(--space-2);
+    }
+    
+    .odontograma-leyenda__item {
+        font-size: var(--font-size-xs);
+    }
+    
+    .odontograma-leyenda__color {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .odontograma-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .odontograma-modal__estados {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .diente-svg {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .odontograma-fila {
+        gap: 2px;
+    }
+    
+    .odontograma-diente__numero {
+        font-size: 9px;
+    }
+    
+    .odontograma-resumen {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+    .odontograma-toolbar,
+    .odontograma-zoom {
+        display: none !important;
+    }
+    
+    .odontograma-container {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .diente-svg .superficie {
+        stroke: #000 !important;
+    }
+}

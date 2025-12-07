@@ -1,0 +1,497 @@
+/**
+ * ============================================
+ * DENTAL MX - BASE STYLES
+ * ============================================
+ * Reset, normalización y estilos base
+ * ============================================
+ */
+
+/* ========================================
+   RESET & BOX SIZING
+   ======================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* ========================================
+   SKIP LINK - Accesibilidad para teclado
+   ======================================== */
+.ds-skip-link {
+    position: absolute;
+    top: -100px;
+    left: var(--space-4);
+    z-index: var(--z-modal);
+    padding: var(--space-2) var(--space-4);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    transition: top var(--transition-fast);
+}
+
+.ds-skip-link:focus {
+    top: var(--space-4);
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+}
+
+/* ========================================
+   GLOBAL FOCUS VISIBLE
+   ======================================== */
+/* Baseline focus-visible para elementos interactivos que no tienen estilos propios */
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Remover focus outline por defecto en elementos manejados por el design system */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* ========================================
+   HTML & BODY
+   ======================================== */
+html {
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+    color: var(--color-body-text);
+    background-color: var(--color-body-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Transición suave para cambio de tema */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ========================================
+   THEME TRANSITION - Componentes Principales
+   ======================================== */
+.ds-card,
+.ds-sidebar,
+.ds-header,
+.ds-modal,
+.ds-dropdown__menu,
+.ds-alert,
+.ds-table,
+.ds-form-control,
+.ds-btn {
+    transition: background-color 0.3s ease, 
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                color 0.3s ease;
+}
+
+/* ========================================
+   TIPOGRAFÍA BASE
+   ======================================== */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: var(--space-3);
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    color: var(--color-gray-900);
+}
+
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+h4 { font-size: var(--font-size-h4); }
+h5 { font-size: var(--font-size-h5); }
+h6 { font-size: var(--font-size-h6); }
+
+p {
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   ENLACES
+   ======================================== */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-primary-hover);
+}
+
+a:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+a:focus:not(:focus-visible) {
+    outline: none;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ========================================
+   LISTAS
+   ======================================== */
+ul, ol {
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+    padding-left: var(--space-6);
+}
+
+ul ul, ul ol,
+ol ul, ol ol {
+    margin-bottom: 0;
+}
+
+li {
+    margin-bottom: var(--space-1);
+}
+
+/* Lista sin estilo */
+.ds-list-unstyled {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.ds-list-unstyled li {
+    margin-bottom: 0;
+}
+
+/* Lista inline */
+.ds-list-inline {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+/* ========================================
+   IMÁGENES Y MEDIA
+   ======================================== */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+img {
+    border-style: none;
+    vertical-align: middle;
+}
+
+svg {
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+/* ========================================
+   TABLAS BASE
+   ======================================== */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+th {
+    text-align: inherit;
+    text-align: -webkit-match-parent;
+}
+
+/* ========================================
+   FORMULARIOS BASE
+   ======================================== */
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+}
+
+button,
+input {
+    overflow: visible;
+}
+
+button,
+select {
+    text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+    overflow: auto;
+}
+
+fieldset {
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+legend {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: inherit;
+    color: inherit;
+    white-space: normal;
+}
+
+/* ========================================
+   CÓDIGO Y PREFORMATEADO
+   ======================================== */
+code,
+kbd,
+pre,
+samp {
+    font-family: var(--font-family-mono);
+    font-size: 0.875em;
+}
+
+code {
+    padding: var(--space-0-5) var(--space-1);
+    background-color: var(--color-gray-100);
+    border-radius: var(--radius-sm);
+    color: var(--color-danger);
+}
+
+pre {
+    display: block;
+    margin-top: 0;
+    margin-bottom: var(--space-4);
+    padding: var(--space-4);
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-800);
+    background-color: var(--color-gray-100);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+}
+
+pre code {
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+kbd {
+    padding: var(--space-0-5) var(--space-1);
+    font-size: var(--font-size-xs);
+    color: var(--color-white);
+    background-color: var(--color-gray-800);
+    border-radius: var(--radius-sm);
+}
+
+/* ========================================
+   SEPARADORES
+   ======================================== */
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-4);
+    border: 0;
+    border-top: var(--border-width) solid var(--color-border);
+}
+
+/* ========================================
+   CITACIONES
+   ======================================== */
+blockquote {
+    margin: 0 0 var(--space-4);
+    padding: var(--space-4);
+    border-left: var(--border-width-4) solid var(--color-primary);
+    background-color: var(--color-gray-50);
+    font-style: italic;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   OTROS ELEMENTOS
+   ======================================== */
+abbr[title] {
+    text-decoration: underline dotted;
+    cursor: help;
+    border-bottom: 0;
+}
+
+address {
+    margin-bottom: var(--space-4);
+    font-style: normal;
+    line-height: inherit;
+}
+
+mark {
+    padding: var(--space-0-5);
+    background-color: var(--color-warning-light);
+}
+
+small {
+    font-size: 80%;
+}
+
+sub,
+sup {
+    position: relative;
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+/* ========================================
+   SELECCIÓN DE TEXTO
+   ======================================== */
+::selection {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+::-moz-selection {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* ========================================
+   SCROLL BARS (Webkit)
+   ======================================== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-gray-400);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gray-500);
+}
+
+/* ========================================
+   ACCESIBILIDAD - SKIP LINK
+   ======================================== */
+.ds-skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--space-2) var(--space-4);
+    z-index: 9999;
+    transition: top var(--transition-fast);
+}
+
+.ds-skip-link:focus {
+    top: 0;
+}
+
+/* ========================================
+   SCREEN READER ONLY
+   ======================================== */
+.sr-only,
+.ds-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.sr-only-focusable:focus,
+.ds-sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
