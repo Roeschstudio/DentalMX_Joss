@@ -1,8 +1,14 @@
 <?php
-// Obtener configuración de la clínica
-$configModel = new \App\Models\ConfiguracionClinicaModel();
-$clinicaConfig = $configModel->getConfiguracion();
-$nombreClinica = $clinicaConfig['nombre_clinica'] ?? 'Dental MX';
+// Obtener configuración de la clínica con manejo de errores
+$nombreClinica = 'Dental MX';
+try {
+    $configModel = new \App\Models\ConfiguracionClinicaModel();
+    $clinicaConfig = $configModel->getConfiguracion();
+    $nombreClinica = $clinicaConfig['nombre_clinica'] ?? 'Dental MX';
+} catch (\Throwable $e) {
+    // Si no hay conexión a BD, usar valores por defecto
+    log_message('error', 'Error cargando configuración en login: ' . $e->getMessage());
+}
 ?>
 <!DOCTYPE html>
 <html lang="es" data-theme="light">

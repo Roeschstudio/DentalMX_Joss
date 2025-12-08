@@ -1,317 +1,199 @@
 -- ============================================================================
--- DentalMX - Datos Iniciales
--- Versión: 2.0.0
--- Fecha: 2024-12-05
--- Descripción: Datos iniciales para la instalación del sistema
--- IMPORTANTE: Ejecutar DESPUÉS de schema.sql
+-- DENTALMX - DATOS INICIALES
+-- ============================================================================
+-- Este archivo contiene los datos mínimos necesarios para iniciar el sistema
+-- Ejecutar DESPUÉS de importar schema.sql
+-- NOTA: La base de datos debe ser seleccionada previamente por el instalador
 -- ============================================================================
 
-USE engsigne_magic_dental;
-
 -- ============================================================================
--- USUARIO ADMINISTRADOR PRINCIPAL
+-- USUARIO ADMINISTRADOR
+-- ============================================================================
 -- Email: admin@dentalmx.com
--- Password: Admin123! (hash bcrypt)
--- ============================================================================
+-- Contraseña: admin123 (CAMBIAR después del primer login)
+-- Hash generado con password_hash('admin123', PASSWORD_DEFAULT)
 
-INSERT INTO usuarios (
-    nombre, 
-    apellido, 
-    email, 
-    password, 
-    rol, 
-    telefono, 
-    direccion, 
-    foto_perfil, 
-    activo, 
-    created_at, 
-    updated_at
-) VALUES (
-    'Administrador',
-    'Sistema',
-    'admin@dentalmx.com',
-    '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', -- password: Admin123!
-    'administrador',
-    '5551234567',
-    'Consultorio Dental Principal',
-    NULL,
-    1,
-    NOW(),
-    NOW()
-);
-
--- ============================================================================
--- DOCTOR DE EJEMPLO
--- ============================================================================
-
-INSERT INTO usuarios (
-    nombre, 
-    apellido, 
-    email, 
-    password, 
-    rol, 
-    telefono, 
-    direccion, 
-    foto_perfil, 
-    activo, 
-    created_at, 
-    updated_at
-) VALUES (
-    'Dr. Juan',
-    'Pérez García',
-    'doctor@dentalmx.com',
-    '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', -- password: Admin123!
-    'doctor',
-    '5559876543',
-    'Consultorio 1',
-    NULL,
-    1,
-    NOW(),
-    NOW()
-);
-
--- ============================================================================
--- SERVICIOS DENTALES BÁSICOS
--- ============================================================================
-
-INSERT INTO servicios (nombre, descripcion, precio_base, created_at, updated_at) VALUES
-('Consulta General', 'Revisión dental completa con diagnóstico', 500.00, NOW(), NOW()),
-('Limpieza Dental', 'Limpieza dental profesional con ultrasonido', 800.00, NOW(), NOW()),
-('Extracción Simple', 'Extracción de pieza dental sin complicaciones', 1000.00, NOW(), NOW()),
-('Extracción Quirúrgica', 'Extracción de pieza dental con procedimiento quirúrgico', 2500.00, NOW(), NOW()),
-('Resina Dental', 'Restauración con resina compuesta', 1200.00, NOW(), NOW()),
-('Amalgama', 'Restauración con amalgama de plata', 800.00, NOW(), NOW()),
-('Endodoncia Unirradicular', 'Tratamiento de conductos en diente de una raíz', 3500.00, NOW(), NOW()),
-('Endodoncia Birradicular', 'Tratamiento de conductos en diente de dos raíces', 4500.00, NOW(), NOW()),
-('Endodoncia Multirradicular', 'Tratamiento de conductos en diente de múltiples raíces', 5500.00, NOW(), NOW()),
-('Corona de Porcelana', 'Corona dental de porcelana sobre metal', 6000.00, NOW(), NOW()),
-('Corona de Zirconia', 'Corona dental de zirconia monolítica', 8000.00, NOW(), NOW()),
-('Puente Dental (por pieza)', 'Puente fijo dental por unidad', 5000.00, NOW(), NOW()),
-('Implante Dental', 'Colocación de implante de titanio', 15000.00, NOW(), NOW()),
-('Prótesis Total', 'Prótesis dental completa removible', 8000.00, NOW(), NOW()),
-('Prótesis Parcial', 'Prótesis dental parcial removible', 5000.00, NOW(), NOW()),
-('Blanqueamiento Dental', 'Blanqueamiento dental profesional en consultorio', 3000.00, NOW(), NOW()),
-('Ortodoncia (mensualidad)', 'Control mensual de tratamiento ortodóntico', 800.00, NOW(), NOW()),
-('Brackets Metálicos', 'Colocación de brackets metálicos convencionales', 18000.00, NOW(), NOW()),
-('Brackets Estéticos', 'Colocación de brackets de cerámica o zafiro', 25000.00, NOW(), NOW()),
-('Férula de Descarga', 'Guarda oclusal para bruxismo', 2500.00, NOW(), NOW()),
-('Radiografía Periapical', 'Radiografía dental simple', 150.00, NOW(), NOW()),
-('Radiografía Panorámica', 'Radiografía panorámica digital', 500.00, NOW(), NOW()),
-('Aplicación de Flúor', 'Aplicación tópica de flúor', 300.00, NOW(), NOW()),
-('Sellador de Fosetas', 'Sellador dental preventivo por diente', 400.00, NOW(), NOW()),
-('Cirugía de Encías', 'Procedimiento periodontal quirúrgico', 3500.00, NOW(), NOW());
-
--- ============================================================================
--- MEDICAMENTOS BÁSICOS
--- ============================================================================
-
-INSERT INTO medicamentos (nombre_comercial, sustancia_activa, presentacion, indicaciones_base, stock, created_at, updated_at) VALUES
-('Ibuprofeno 400mg', 'Ibuprofeno', 'Caja con 20 tabletas', 'Tomar 1 tableta cada 8 horas después de los alimentos. No exceder 3 tabletas al día.', 100, NOW(), NOW()),
-('Ibuprofeno 600mg', 'Ibuprofeno', 'Caja con 20 tabletas', 'Tomar 1 tableta cada 8 horas después de los alimentos. No exceder 3 tabletas al día.', 80, NOW(), NOW()),
-('Paracetamol 500mg', 'Paracetamol', 'Caja con 20 tabletas', 'Tomar 1-2 tabletas cada 6-8 horas. No exceder 4g al día.', 150, NOW(), NOW()),
-('Ketorolaco 10mg', 'Ketorolaco trometamina', 'Caja con 10 tabletas', 'Tomar 1 tableta cada 8 horas por máximo 5 días.', 60, NOW(), NOW()),
-('Ketorolaco Sublingual 30mg', 'Ketorolaco trometamina', 'Caja con 4 tabletas sublinguales', 'Colocar 1 tableta debajo de la lengua cada 8 horas por máximo 2 días.', 40, NOW(), NOW()),
-('Nimesulida 100mg', 'Nimesulida', 'Caja con 14 tabletas', 'Tomar 1 tableta cada 12 horas después de los alimentos.', 50, NOW(), NOW()),
-('Naproxeno 550mg', 'Naproxeno sódico', 'Caja con 12 tabletas', 'Tomar 1 tableta cada 12 horas con alimentos.', 70, NOW(), NOW()),
-('Amoxicilina 500mg', 'Amoxicilina', 'Caja con 21 cápsulas', 'Tomar 1 cápsula cada 8 horas por 7 días. Completar el tratamiento.', 100, NOW(), NOW()),
-('Amoxicilina 875mg / Ácido Clavulánico 125mg', 'Amoxicilina con ácido clavulánico', 'Caja con 14 tabletas', 'Tomar 1 tableta cada 12 horas por 7 días.', 50, NOW(), NOW()),
-('Clindamicina 300mg', 'Clindamicina', 'Caja con 16 cápsulas', 'Tomar 1 cápsula cada 8 horas por 7 días.', 40, NOW(), NOW()),
-('Azitromicina 500mg', 'Azitromicina', 'Caja con 3 tabletas', 'Tomar 1 tableta cada 24 horas por 3 días.', 60, NOW(), NOW()),
-('Metronidazol 500mg', 'Metronidazol', 'Caja con 30 tabletas', 'Tomar 1 tableta cada 8 horas por 7 días. No consumir alcohol.', 80, NOW(), NOW()),
-('Dexametasona 4mg', 'Dexametasona', 'Caja con 10 tabletas', 'Tomar según indicación médica.', 30, NOW(), NOW()),
-('Betametasona 0.5mg', 'Betametasona', 'Caja con 20 tabletas', 'Tomar según indicación médica.', 25, NOW(), NOW()),
-('Omeprazol 20mg', 'Omeprazol', 'Caja con 14 cápsulas', 'Tomar 1 cápsula en ayunas.', 100, NOW(), NOW()),
-('Clorhexidina 0.12%', 'Gluconato de clorhexidina', 'Frasco 250ml', 'Realizar enjuagues de 30 segundos después del cepillado, 2 veces al día.', 50, NOW(), NOW()),
-('Lidocaína + Epinefrina 2%', 'Lidocaína con epinefrina', 'Caja con 50 cartuchos', 'Uso exclusivo profesional para anestesia local.', 200, NOW(), NOW()),
-('Articaína 4%', 'Articaína clorhidrato', 'Caja con 50 cartuchos', 'Uso exclusivo profesional para anestesia local.', 150, NOW(), NOW()),
-('Mepivacaína 3%', 'Mepivacaína', 'Caja con 50 cartuchos', 'Uso exclusivo profesional para anestesia local sin vasoconstrictor.', 100, NOW(), NOW()),
-('Tramadol 50mg', 'Tramadol clorhidrato', 'Caja con 10 cápsulas', 'Tomar 1 cápsula cada 8 horas en caso de dolor severo. Medicamento controlado.', 20, NOW(), NOW());
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `rol`, `activo`, `created_at`) 
+VALUES 
+(1, 'Administrador', 'Sistema', 'admin@dentalmx.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', 1, NOW());
 
 -- ============================================================================
 -- CONFIGURACIÓN INICIAL DE LA CLÍNICA
 -- ============================================================================
 
-INSERT INTO configuracion_clinica (
-    nombre_clinica,
-    logo,
-    telefono,
-    email,
-    direccion,
-    horario_atencion,
-    vigencia_presupuestos,
-    mensaje_bienvenida,
-    mail_host,
-    mail_port,
-    mail_username,
-    mail_password,
-    mail_encryption,
-    mail_from_email,
-    mail_from_name,
-    created_at,
-    updated_at
-) VALUES (
-    'DentalMX Clínica',
-    NULL,
-    '555-123-4567',
-    'contacto@dentalmx.com',
-    'Av. Principal #123, Col. Centro, Ciudad de México, CP 06600',
-    'Lunes a Viernes: 9:00 AM - 7:00 PM, Sábado: 9:00 AM - 2:00 PM',
-    30,
-    'Bienvenido a DentalMX, su salud dental es nuestra prioridad.',
-    'smtp.gmail.com',
-    587,
-    '',
-    '',
-    'tls',
-    'contacto@dentalmx.com',
-    'DentalMX Clínica',
-    NOW(),
-    NOW()
-);
+INSERT INTO `configuracion_clinica` (`id`, `nombre_clinica`, `telefono`, `email`, `horario_atencion`, `vigencia_presupuestos`, `mensaje_bienvenida`, `created_at`) 
+VALUES 
+(1, 'Clínica Dental', '555-123-4567', 'contacto@clinicadental.com', 'Lunes a Viernes 9:00 - 18:00, Sábados 9:00 - 14:00', 30, 'Bienvenido a nuestra clínica dental. Su salud bucal es nuestra prioridad.', NOW());
 
 -- ============================================================================
--- PREFERENCIAS DE USUARIO PARA ADMIN
+-- CATÁLOGO DE SERVICIOS BÁSICOS
 -- ============================================================================
 
-INSERT INTO preferencias_usuario (
-    id_usuario,
-    tema,
-    idioma,
-    notificaciones_email,
-    notificaciones_sistema,
-    formato_fecha,
-    created_at,
-    updated_at
-) VALUES (
-    1,
-    'light',
-    'es',
-    1,
-    1,
-    'd/m/Y',
-    NOW(),
-    NOW()
-);
+INSERT INTO `servicios` (`nombre`, `descripcion`, `precio_base`, `created_at`) VALUES
+('Consulta General', 'Revisión dental general y diagnóstico', 300.00, NOW()),
+('Limpieza Dental', 'Profilaxis y limpieza profunda', 500.00, NOW()),
+('Extracción Simple', 'Extracción de pieza dental simple', 800.00, NOW()),
+('Extracción Compleja', 'Extracción quirúrgica de pieza dental', 1500.00, NOW()),
+('Resina Compuesta', 'Restauración con resina compuesta', 600.00, NOW()),
+('Amalgama', 'Restauración con amalgama dental', 450.00, NOW()),
+('Endodoncia Unirradicular', 'Tratamiento de conductos - 1 raíz', 2000.00, NOW()),
+('Endodoncia Birradicular', 'Tratamiento de conductos - 2 raíces', 2500.00, NOW()),
+('Endodoncia Multirradicular', 'Tratamiento de conductos - 3+ raíces', 3000.00, NOW()),
+('Corona Porcelana', 'Corona dental de porcelana', 4000.00, NOW()),
+('Corona Metal-Porcelana', 'Corona dental metal-porcelana', 3500.00, NOW()),
+('Blanqueamiento Dental', 'Blanqueamiento dental completo', 2000.00, NOW()),
+('Ortodoncia (Mensual)', 'Pago mensual de ortodoncia', 1200.00, NOW()),
+('Implante Dental', 'Colocación de implante dental', 8000.00, NOW()),
+('Prótesis Removible', 'Prótesis dental removible', 5000.00, NOW()),
+('Prótesis Fija', 'Prótesis dental fija', 8000.00, NOW()),
+('Radiografía Periapical', 'Radiografía dental periapical', 150.00, NOW()),
+('Radiografía Panorámica', 'Radiografía panorámica', 400.00, NOW()),
+('Aplicación de Flúor', 'Aplicación de flúor tópico', 200.00, NOW()),
+('Sellador de Fosetas', 'Sellador de fosetas y fisuras', 300.00, NOW());
 
 -- ============================================================================
--- HORARIOS DEL DOCTOR (Doctor ID = 2)
+-- CATÁLOGO DE MEDICAMENTOS BÁSICOS
 -- ============================================================================
 
-INSERT INTO doctor_schedules (usuario_id, dia_semana, hora_inicio, hora_fin, activo, created_at, updated_at) VALUES
-(2, 'lunes', '09:00:00', '14:00:00', 1, NOW(), NOW()),
-(2, 'lunes', '16:00:00', '19:00:00', 1, NOW(), NOW()),
-(2, 'martes', '09:00:00', '14:00:00', 1, NOW(), NOW()),
-(2, 'martes', '16:00:00', '19:00:00', 1, NOW(), NOW()),
-(2, 'miercoles', '09:00:00', '14:00:00', 1, NOW(), NOW()),
-(2, 'miercoles', '16:00:00', '19:00:00', 1, NOW(), NOW()),
-(2, 'jueves', '09:00:00', '14:00:00', 1, NOW(), NOW()),
-(2, 'jueves', '16:00:00', '19:00:00', 1, NOW(), NOW()),
-(2, 'viernes', '09:00:00', '14:00:00', 1, NOW(), NOW()),
-(2, 'viernes', '16:00:00', '19:00:00', 1, NOW(), NOW()),
-(2, 'sabado', '09:00:00', '14:00:00', 1, NOW(), NOW());
+INSERT INTO `medicamentos` (`nombre_comercial`, `sustancia_activa`, `presentacion`, `indicaciones_base`, `stock`, `created_at`) VALUES
+('Ibuprofeno 400mg', 'Ibuprofeno', 'Tabletas', 'Tomar 1 tableta cada 8 horas después de los alimentos', 100, NOW()),
+('Ibuprofeno 600mg', 'Ibuprofeno', 'Tabletas', 'Tomar 1 tableta cada 8 horas después de los alimentos', 100, NOW()),
+('Paracetamol 500mg', 'Paracetamol', 'Tabletas', 'Tomar 1-2 tabletas cada 6-8 horas', 100, NOW()),
+('Amoxicilina 500mg', 'Amoxicilina', 'Cápsulas', 'Tomar 1 cápsula cada 8 horas durante 7 días', 50, NOW()),
+('Amoxicilina 875mg + Ác. Clavulánico', 'Amoxicilina/Ácido Clavulánico', 'Tabletas', 'Tomar 1 tableta cada 12 horas durante 7 días', 50, NOW()),
+('Clindamicina 300mg', 'Clindamicina', 'Cápsulas', 'Tomar 1 cápsula cada 8 horas durante 7 días', 50, NOW()),
+('Ketorolaco 10mg', 'Ketorolaco', 'Tabletas', 'Tomar 1 tableta cada 8 horas por máximo 5 días', 50, NOW()),
+('Nimesulida 100mg', 'Nimesulida', 'Tabletas', 'Tomar 1 tableta cada 12 horas después de los alimentos', 50, NOW()),
+('Naproxeno 550mg', 'Naproxeno', 'Tabletas', 'Tomar 1 tableta cada 12 horas', 50, NOW()),
+('Metronidazol 500mg', 'Metronidazol', 'Tabletas', 'Tomar 1 tableta cada 8 horas durante 7 días', 50, NOW()),
+('Clorhexidina 0.12%', 'Clorhexidina', 'Enjuague bucal 250ml', 'Realizar enjuagues 2 veces al día por 30 segundos', 30, NOW()),
+('Lidocaína 2% c/Epinefrina', 'Lidocaína/Epinefrina', 'Cartuchos 1.8ml', 'Uso exclusivo del profesional dental', 100, NOW()),
+('Articaína 4% c/Epinefrina', 'Articaína/Epinefrina', 'Cartuchos 1.7ml', 'Uso exclusivo del profesional dental', 100, NOW()),
+('Dexametasona 8mg', 'Dexametasona', 'Ampolletas', 'Aplicar según indicación médica', 20, NOW()),
+('Tramadol 50mg', 'Tramadol', 'Cápsulas', 'Tomar 1 cápsula cada 8 horas en caso de dolor intenso', 30, NOW());
 
 -- ============================================================================
--- PREFERENCIAS DEL DOCTOR
+-- CATÁLOGOS ODONTOLÓGICOS PARA ODONTOGRAMA
 -- ============================================================================
 
-INSERT INTO doctor_preferences (
-    usuario_id,
-    duracion_cita,
-    tiempo_descanso,
-    citas_simultaneas,
-    created_at,
-    updated_at
-) VALUES (
-    2,
-    30,
-    10,
-    1,
-    NOW(),
-    NOW()
-);
+-- Estados de superficie dental
+INSERT INTO `catalogos_odontologicos` (`codigo`, `tipo`, `nombre`, `descripcion`, `color_hex`, `activo`, `orden`) VALUES
+('S001', 'superficie_estado', 'Sano', 'Superficie sin patología', '#FFFFFF', 1, 1),
+('S002', 'superficie_estado', 'Caries', 'Presencia de caries dental', '#FF0000', 1, 2),
+('S003', 'superficie_estado', 'Obturación Resina', 'Restauración con resina compuesta', '#0000FF', 1, 3),
+('S004', 'superficie_estado', 'Obturación Amalgama', 'Restauración con amalgama', '#808080', 1, 4),
+('S005', 'superficie_estado', 'Fractura', 'Superficie fracturada', '#FFA500', 1, 5),
+('S006', 'superficie_estado', 'Abrasión', 'Desgaste por abrasión', '#FFD700', 1, 6),
+('S007', 'superficie_estado', 'Erosión', 'Desgaste por erosión', '#DAA520', 1, 7);
+
+-- Diagnósticos odontológicos
+INSERT INTO `catalogos_odontologicos` (`codigo`, `tipo`, `nombre`, `descripcion`, `color_hex`, `activo`, `orden`) VALUES
+('D001', 'diagnostico', 'Caries Incipiente', 'Caries en etapa inicial (mancha blanca)', '#FFFF00', 1, 1),
+('D002', 'diagnostico', 'Caries de Esmalte', 'Caries limitada al esmalte', '#FFD700', 1, 2),
+('D003', 'diagnostico', 'Caries de Dentina', 'Caries que afecta la dentina', '#FFA500', 1, 3),
+('D004', 'diagnostico', 'Caries Profunda', 'Caries cercana a pulpa dental', '#FF4500', 1, 4),
+('D005', 'diagnostico', 'Pulpitis Reversible', 'Inflamación pulpar reversible', '#FF6347', 1, 5),
+('D006', 'diagnostico', 'Pulpitis Irreversible', 'Inflamación pulpar irreversible', '#FF0000', 1, 6),
+('D007', 'diagnostico', 'Necrosis Pulpar', 'Muerte del tejido pulpar', '#333333', 1, 7),
+('D008', 'diagnostico', 'Absceso Periapical', 'Infección periapical aguda', '#8B0000', 1, 8),
+('D009', 'diagnostico', 'Periodontitis Leve', 'Enfermedad periodontal leve', '#9370DB', 1, 9),
+('D010', 'diagnostico', 'Periodontitis Moderada', 'Enfermedad periodontal moderada', '#8A2BE2', 1, 10),
+('D011', 'diagnostico', 'Periodontitis Severa', 'Enfermedad periodontal severa', '#800080', 1, 11),
+('D012', 'diagnostico', 'Gingivitis', 'Inflamación de encías', '#FF69B4', 1, 12),
+('D013', 'diagnostico', 'Fractura Dental', 'Fractura de pieza dental', '#CD853F', 1, 13),
+('D014', 'diagnostico', 'Movilidad Dental', 'Movilidad anormal del diente', '#D2691E', 1, 14);
+
+-- Tratamientos odontológicos
+INSERT INTO `catalogos_odontologicos` (`codigo`, `tipo`, `nombre`, `descripcion`, `color_hex`, `activo`, `orden`) VALUES
+('T001', 'tratamiento', 'Resina Compuesta', 'Restauración con resina', '#00BFFF', 1, 1),
+('T002', 'tratamiento', 'Amalgama', 'Restauración con amalgama', '#A9A9A9', 1, 2),
+('T003', 'tratamiento', 'Ionómero de Vidrio', 'Restauración con ionómero', '#87CEEB', 1, 3),
+('T004', 'tratamiento', 'Endodoncia', 'Tratamiento de conductos', '#FF1493', 1, 4),
+('T005', 'tratamiento', 'Extracción', 'Extracción dental', '#DC143C', 1, 5),
+('T006', 'tratamiento', 'Corona', 'Colocación de corona', '#FFD700', 1, 6),
+('T007', 'tratamiento', 'Puente Fijo', 'Prótesis fija tipo puente', '#DAA520', 1, 7),
+('T008', 'tratamiento', 'Implante', 'Colocación de implante', '#4169E1', 1, 8),
+('T009', 'tratamiento', 'Profilaxis', 'Limpieza dental profesional', '#32CD32', 1, 9),
+('T010', 'tratamiento', 'Sellador', 'Sellador de fosetas y fisuras', '#00FA9A', 1, 10),
+('T011', 'tratamiento', 'Aplicación Flúor', 'Aplicación tópica de flúor', '#7CFC00', 1, 11),
+('T012', 'tratamiento', 'Raspado y Alisado', 'Raspado y alisado radicular', '#9932CC', 1, 12),
+('T013', 'tratamiento', 'Cirugía Periodontal', 'Procedimiento quirúrgico periodontal', '#8B008B', 1, 13),
+('T014', 'tratamiento', 'Blanqueamiento', 'Blanqueamiento dental', '#FFFACD', 1, 14),
+('T015', 'tratamiento', 'Carilla', 'Carilla dental estética', '#FFEFD5', 1, 15);
+
+-- Condiciones especiales
+INSERT INTO `catalogos_odontologicos` (`codigo`, `tipo`, `nombre`, `descripcion`, `color_hex`, `activo`, `orden`) VALUES
+('C001', 'condicion', 'Ausente', 'Diente ausente', '#808080', 1, 1),
+('C002', 'condicion', 'Implante Presente', 'Implante dental colocado', '#4169E1', 1, 2),
+('C003', 'condicion', 'Corona Presente', 'Corona dental existente', '#FFD700', 1, 3),
+('C004', 'condicion', 'Puente (Pilar)', 'Diente pilar de puente', '#DAA520', 1, 4),
+('C005', 'condicion', 'Puente (Póntico)', 'Póntico de puente fijo', '#B8860B', 1, 5),
+('C006', 'condicion', 'Prótesis Removible', 'Forma parte de prótesis removible', '#9370DB', 1, 6),
+('C007', 'condicion', 'Ortodoncia', 'Con aparato ortodóntico', '#00CED1', 1, 7),
+('C008', 'condicion', 'Retenedor', 'Con retenedor ortodóntico', '#20B2AA', 1, 8),
+('C009', 'condicion', 'Diente Temporal', 'Diente de leche', '#FFC0CB', 1, 9),
+('C010', 'condicion', 'En Erupción', 'Diente en proceso de erupción', '#98FB98', 1, 10),
+('C011', 'condicion', 'Impactado', 'Diente impactado', '#CD853F', 1, 11),
+('C012', 'condicion', 'Supernumerario', 'Diente supernumerario', '#DDA0DD', 1, 12);
+
+-- Hallazgos clínicos
+INSERT INTO `catalogos_odontologicos` (`codigo`, `tipo`, `nombre`, `descripcion`, `color_hex`, `activo`, `orden`) VALUES
+('H001', 'hallazgo', 'Placa Bacteriana', 'Presencia de placa dental', '#F0E68C', 1, 1),
+('H002', 'hallazgo', 'Sarro/Cálculo', 'Presencia de sarro dental', '#BDB76B', 1, 2),
+('H003', 'hallazgo', 'Sangrado al Sondeo', 'Sangrado gingival al sondeo', '#FF6B6B', 1, 3),
+('H004', 'hallazgo', 'Retracción Gingival', 'Recesión de encías', '#FFB6C1', 1, 4),
+('H005', 'hallazgo', 'Bolsa Periodontal', 'Presencia de bolsa periodontal', '#DDA0DD', 1, 5),
+('H006', 'hallazgo', 'Sensibilidad', 'Hipersensibilidad dental', '#87CEFA', 1, 6),
+('H007', 'hallazgo', 'Bruxismo', 'Signos de bruxismo', '#F4A460', 1, 7),
+('H008', 'hallazgo', 'Pigmentación', 'Manchas o pigmentación', '#D2B48C', 1, 8),
+('H009', 'hallazgo', 'Fisura', 'Línea de fisura en esmalte', '#C0C0C0', 1, 9),
+('H010', 'hallazgo', 'Lesión Periapical', 'Lesión visible en radiografía', '#A52A2A', 1, 10);
 
 -- ============================================================================
--- PACIENTE DE EJEMPLO
+-- PREFERENCIAS DEL USUARIO ADMIN
 -- ============================================================================
 
-INSERT INTO pacientes (
-    nombre,
-    primer_apellido,
-    segundo_apellido,
-    fecha_nacimiento,
-    nacionalidad,
-    domicilio,
-    telefono,
-    celular,
-    email,
-    created_at,
-    updated_at
-) VALUES (
-    'María',
-    'González',
-    'López',
-    '1985-06-15',
-    'Mexicana',
-    'Calle Reforma #456, Col. Centro, CDMX',
-    '5551112222',
-    '5559998888',
-    'maria.gonzalez@email.com',
-    NOW(),
-    NOW()
-);
+INSERT INTO `preferencias_usuario` (`id_usuario`, `tema`, `idioma`, `notificaciones_email`, `notificaciones_sistema`, `formato_fecha`, `created_at`)
+VALUES (1, 'light', 'es', 1, 1, 'd/m/Y', NOW());
 
 -- ============================================================================
--- DATOS GENERALES DEL PACIENTE DE EJEMPLO
+-- HORARIO DE TRABAJO DEL ADMIN (Ejemplo)
 -- ============================================================================
 
-INSERT INTO datos_generales (
-    id_paciente,
-    edad,
-    sexo,
-    peso,
-    tipo_sangre,
-    fecha_nacimiento,
-    estado_civil,
-    ocupacion,
-    lugar_trabajo,
-    cuenta_seguro,
-    seguro,
-    nombre_contacto_emergencia,
-    embarazo,
-    meses_embarazo,
-    ginecologo,
-    telefono_ginecologo,
-    lugar_control,
-    created_at,
-    updated_at
-) VALUES (
-    1,
-    39,
-    'Femenino',
-    65.00,
-    'O+',
-    '1985-06-15',
-    'Casada',
-    'Contadora',
-    'Despacho Contable ABC',
-    1,
-    'GNP Seguros',
-    'Juan González - 5557778888',
-    0,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NOW(),
-    NOW()
-);
+INSERT INTO `doctor_schedules` (`id_usuario`, `dia_semana`, `hora_inicio`, `hora_fin`, `activo`, `created_at`) VALUES
+(1, 1, '09:00:00', '18:00:00', 1, NOW()),  -- Lunes
+(1, 2, '09:00:00', '18:00:00', 1, NOW()),  -- Martes
+(1, 3, '09:00:00', '18:00:00', 1, NOW()),  -- Miércoles
+(1, 4, '09:00:00', '18:00:00', 1, NOW()),  -- Jueves
+(1, 5, '09:00:00', '18:00:00', 1, NOW()),  -- Viernes
+(1, 6, '09:00:00', '14:00:00', 1, NOW());  -- Sábado
 
 -- ============================================================================
--- FIN DE DATOS INICIALES
+-- PREFERENCIAS DE CITAS DEL ADMIN
 -- ============================================================================
 
--- Verificación de datos insertados
-SELECT 'Usuarios creados:' AS info, COUNT(*) AS total FROM usuarios;
-SELECT 'Servicios creados:' AS info, COUNT(*) AS total FROM servicios;
-SELECT 'Medicamentos creados:' AS info, COUNT(*) AS total FROM medicamentos;
-SELECT 'Configuración creada:' AS info, COUNT(*) AS total FROM configuracion_clinica;
+INSERT INTO `doctor_preferences` (`id_usuario`, `duracion_cita_default`, `intervalo_citas`, `max_citas_dia`, `created_at`)
+VALUES (1, 30, 15, 20, NOW());
+
+-- ============================================================================
+-- NOTAS IMPORTANTES
+-- ============================================================================
+-- 
+-- CREDENCIALES DE ACCESO:
+-- Email: admin@dentalmx.com
+-- Contraseña: admin123
+--
+-- ¡IMPORTANTE! Cambie la contraseña inmediatamente después del primer login.
+--
+-- Los precios de servicios son ejemplos y deben ajustarse según su clínica.
+-- Los medicamentos son ejemplos comunes en odontología.
+-- El catálogo odontológico puede ampliarse según necesidades.
+--
+-- ============================================================================
+
+-- Verificación de datos
+SELECT 'Datos iniciales de DentalMX cargados exitosamente' AS mensaje;
+SELECT CONCAT('Usuarios creados: ', COUNT(*)) AS info FROM usuarios;
+SELECT CONCAT('Servicios creados: ', COUNT(*)) AS info FROM servicios;
+SELECT CONCAT('Medicamentos creados: ', COUNT(*)) AS info FROM medicamentos;
+SELECT CONCAT('Catálogos odontológicos: ', COUNT(*)) AS info FROM catalogos_odontologicos;
