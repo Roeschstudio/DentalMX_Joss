@@ -1,7 +1,14 @@
 <?php
-$configModel = new \App\Models\ConfiguracionClinicaModel();
-$clinicaConfig = $configModel->getConfiguracion();
-$nombreClinica = $clinicaConfig['nombre_clinica'] ?? 'Dental MX';
+$nombreClinica = 'Dental MX';
+try {
+    if (class_exists('\App\Models\ConfiguracionClinicaModel')) {
+        $configModel = new \App\Models\ConfiguracionClinicaModel();
+        $clinicaConfig = $configModel->getConfiguracion();
+        $nombreClinica = $clinicaConfig['nombre_clinica'] ?? 'Dental MX';
+    }
+} catch (\Throwable $e) {
+    // Usar nombre por defecto
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">

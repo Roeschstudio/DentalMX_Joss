@@ -1,7 +1,16 @@
 <?php
-$configModel = new \App\Models\ConfiguracionClinicaModel();
-$clinicaConfig = $configModel->getConfiguracion();
-$nombreClinica = $clinicaConfig['nombre_clinica'] ?? 'Dental MX';
+// No intentar conectar a la base de datos en página de error
+// ya que el error podría ser de conexión a BD
+$nombreClinica = 'Dental MX';
+try {
+    if (class_exists('\App\Models\ConfiguracionClinicaModel')) {
+        $configModel = new \App\Models\ConfiguracionClinicaModel();
+        $clinicaConfig = $configModel->getConfiguracion();
+        $nombreClinica = $clinicaConfig['nombre_clinica'] ?? 'Dental MX';
+    }
+} catch (\Throwable $e) {
+    // Silenciosamente usar el nombre por defecto
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
