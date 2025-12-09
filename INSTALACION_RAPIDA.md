@@ -1,6 +1,6 @@
 # 🦷 DentalMX - Guía de Instalación Rápida
 
-## Instalación Automática (Recomendado)
+## Instalación en Windows (XAMPP)
 
 ### Prerrequisitos
 1. **XAMPP** instalado (incluye PHP 8.0+ y MySQL)
@@ -29,7 +29,7 @@
    - **Email:** `admin@dentalmx.com`
    - **Contraseña:** `admin123`
 
-### Opciones del Instalador
+### Opciones del Instalador Windows
 
 ```powershell
 # Instalación con configuración personalizada
@@ -43,7 +43,64 @@
 # -BaseUrl            URL base de la aplicación
 ```
 
-## Instalación Manual
+---
+
+## Instalación en macOS (MAMP)
+
+### Prerrequisitos
+1. **MAMP** instalado (incluye PHP 8.0+ y MySQL)
+2. **Servidores MAMP** ejecutándose (Start Servers)
+3. **Terminal** de macOS
+
+### Pasos de Instalación
+
+1. **Descargue el proyecto** desde GitHub:
+   - Clone el repositorio o descargue el ZIP
+   - Extraiga en `/Applications/MAMP/htdocs/DentalMX_Joss`
+
+2. **Ejecute el instalador**:
+   - Abra Terminal
+   - Navegue a la carpeta del proyecto:
+   ```bash
+   cd /Applications/MAMP/htdocs/DentalMX_Joss
+   ```
+   - Dé permisos de ejecución al instalador:
+   ```bash
+   chmod +x install-macos.sh
+   ```
+   - Ejecute el instalador:
+   ```bash
+   ./install-macos.sh
+   ```
+
+3. **Acceda a la aplicación**:
+   - Abra su navegador en: `http://localhost:8888/DentalMX_Joss/public`
+   - **Email:** `admin@dentalmx.com`
+   - **Contraseña:** `admin123`
+
+### Opciones del Instalador macOS
+
+```bash
+# Instalación con configuración personalizada
+./install-macos.sh --password "mipassword"
+
+# Todos los parámetros disponibles:
+# -m, --mamp-path     Ruta de MAMP (default: /Applications/MAMP)
+# -d, --database      Nombre de la BD (default: engsigne_magic_dental)
+# -u, --user          Usuario MySQL (default: root)
+# -p, --password      Contraseña MySQL (default: root)
+# -b, --base-url      URL base de la aplicación
+
+# Ver ayuda
+./install-macos.sh --help
+```
+
+### Nota sobre MAMP
+- MAMP usa el puerto **8888** para Apache y **8889** para MySQL
+- La URL por defecto será: `http://localhost:8888/DentalMX_Joss/public`
+- Las credenciales por defecto de MySQL en MAMP son: `root` / `root`
+
+---
 
 Si prefiere instalar manualmente:
 
