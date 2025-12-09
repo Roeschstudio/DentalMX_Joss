@@ -67,6 +67,7 @@
    - Dé permisos de ejecución al instalador:
    ```bash
    chmod +x install-macos.sh
+   chmod +x setup-htaccess-macos.sh
    ```
    - Ejecute el instalador:
    ```bash
@@ -74,9 +75,29 @@
    ```
 
 3. **Acceda a la aplicación**:
+   - El instalador configurará automáticamente las redirecciones
    - Abra su navegador en: `http://localhost:8888/DentalMX_Joss/public`
+   - **Nota:** Ya NO necesita agregar `/index.php/` en la URL
    - **Email:** `admin@dentalmx.com`
    - **Contraseña:** `admin123`
+
+**¿Problemas con las redirecciones?**
+
+Si aún necesita usar `/index.php/` en la URL, ejecute manualmente:
+```bash
+./setup-htaccess-macos.sh
+```
+
+Este script:
+1. Crea automáticamente el archivo `.htaccess` correcto
+2. Configura las redirecciones para funcionar sin `/index.php/`
+3. Verifica si `mod_rewrite` está habilitado
+4. Proporciona soluciones si hay problemas
+
+**Después de ejecutar el script:**
+- Reinicia los servidores MAMP (Stop → Start)
+- Recarga tu navegador
+- Ahora debería funcionar sin `/index.php/`
 
 ### Opciones del Instalador macOS
 
@@ -128,17 +149,93 @@ Si prefiere instalar manualmente:
 
 ## Solución de Problemas
 
-### Error: "No se puede conectar a MySQL"
+### Windows (XAMPP)
+
+#### Error: "No se puede conectar a MySQL"
 - Verifique que MySQL esté ejecutándose en XAMPP Control Panel
 - Haga clic en "Start" en la fila de MySQL
 
-### Error: "XAMPP no encontrado"
+#### Error: "XAMPP no encontrado"
 - Especifique la ruta de XAMPP: `.\Install-DentalMX.ps1 -XamppPath "D:\xampp"`
 
-### Error: "Execution Policy"
+#### Error: "Execution Policy"
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
+
+---
+
+### macOS (MAMP)
+
+#### Error: "Aún necesito agregar /index.php/ en la URL"
+
+Este es el problema más común en macOS. Solución:
+
+1. **Ejecutar el script de .htaccess:**
+   ```bash
+   cd /Applications/MAMP/htdocs/DentalMX_Joss
+   chmod +x setup-htaccess-macos.sh
+   ./setup-htaccess-macos.sh
+   ```
+
+2. **Reiniciar MAMP:**
+   - Abre MAMP
+   - Haz clic en "Stop Servers"
+   - Espera 3 segundos
+   - Haz clic en "Start Servers"
+   - Recarga tu navegador
+
+3. **Verificar que mod_rewrite está habilitado:**
+   ```bash
+   /Applications/MAMP/Library/bin/httpd -M | grep rewrite
+   ```
+   
+   Si ves `rewrite_module (shared)`, está habilitado. Si no:
+   ```bash
+   sudo nano /Applications/MAMP/conf/apache/httpd.conf
+   ```
+   - Busca: `#LoadModule rewrite_module`
+   - Quita el `#` al principio (descomenta)
+   - Guarda: `Ctrl+O`, `Enter`, `Ctrl+X`
+   - Reinicia MAMP
+
+#### Error: "No se puede conectar a MySQL en MAMP"
+- Asegúrate de que MAMP esté ejecutándose
+- Verifica que el puerto sea **8889** para MySQL
+- Las credenciales por defecto son: `root` / `root`
+- En Terminal, prueba:
+  ```bash
+  /Applications/MAMP/Library/bin/mysql -u root -p"root"
+  ```
+
+#### Error: "Archivo test-redirect.php no funciona"
+
+El archivo de prueba se crea en `public/test-redirect.php`. Si al abrirlo no ves el mensaje de confirmación:
+
+1. Verifica que esté en la ruta correcta:
+   ```bash
+   ls -la /Applications/MAMP/htdocs/DentalMX_Joss/public/test-redirect.php
+   ```
+
+2. Comprueba los permisos:
+   ```bash
+   chmod 644 /Applications/MAMP/htdocs/DentalMX_Joss/public/test-redirect.php
+   ```
+
+3. Revisa el log de errores de Apache:
+   ```bash
+   tail -f /Applications/MAMP/logs/apache_error.log
+   ```
+
+#### Error: "Permisos denegados al ejecutar script"
+
+Asegúrate de dar permisos de ejecución:
+```bash
+chmod +x install-macos.sh
+chmod +x setup-htaccess-macos.sh
+```
+
+---
 
 ## Soporte
 

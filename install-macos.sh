@@ -417,37 +417,61 @@ done
 print_success "Directorios de escritura configurados"
 
 # ============================================================================
-# PASO 11: Verificar instalación
+# PASO 12: Configurar .htaccess para redirecciones sin /index.php/
 # ============================================================================
-print_header "VERIFICACIÓN FINAL"
+print_step 12 "Configurando .htaccess para redirecciones..."
 
-print_step 11 "Verificando instalación..."
+SETUP_HTACCESS="$PROJECT_PATH/setup-htaccess-macos.sh"
 
-# Verificar conexión a base de datos
-USER_COUNT=$("$MYSQL_PATH" -u "$DATABASE_USER" -p"$DATABASE_PASSWORD" "$DATABASE_NAME" -N -e "SELECT COUNT(*) FROM usuarios" 2>/dev/null)
-if [ -n "$USER_COUNT" ]; then
-    print_success "Conexión a base de datos: OK"
-    print_success "Usuarios en sistema: $USER_COUNT"
+if [ -f "$SETUP_HTACCESS" ]; then
+    # Dar permisos de ejecución
+    chmod +x "$SETUP_HTACCESS"
+    
+    # Ejecutar el script silenciosamente
+    print_info "Configurando redirecciones automáticas..."
+    
+    # Crear .htaccess en public/
+    HTACCESS_PUBLIC="$PROJECT_PATH/public/.htaccess"
+    cat > "$HTACCESS_PUBLIC" << 'HTACCESS_EOF'
+# ============================================================================
+# DentalMX - Configuración de Apache para CodeIgniter 4 en macOS + MAMP
+# ============================================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
+
+# Seguridad - Denegar acceso a archivos sensibles
+<Files ".env*">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+<Files ".htaccess">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+<Files "composer.*">
+    Order Deny,Allow
+    Deny from all
+</Files>
+HTACCESS_EOF
+
+    if [ -f "$HTACCESS_PUBLIC" ]; then
+        print_success ".htaccess configurado en: public/.htaccess"
+    else
+        print_warning ".htaccess no se pudo crear automáticamente"
+        print_info "Ejecuta: ./setup-htaccess-macos.sh después"
+    fi
 else
-    print_error "Error al verificar base de datos"
+    print_warning "Script setup-htaccess-macos.sh no encontrado"
 fi
 
-# Verificar servicios
-SERVICE_COUNT=$("$MYSQL_PATH" -u "$DATABASE_USER" -p"$DATABASE_PASSWORD" "$DATABASE_NAME" -N -e "SELECT COUNT(*) FROM servicios" 2>/dev/null)
-if [ -n "$SERVICE_COUNT" ]; then
-    print_success "Servicios configurados: $SERVICE_COUNT"
-fi
-
-# ============================================================================
-# RESUMEN FINAL
-# ============================================================================
-echo ""
-echo -e "${GREEN}════════════════════════════════════════════════════════════════════════${NC}"
-echo ""
-echo -e "${GREEN}  ¡INSTALACIÓN COMPLETADA EXITOSAMENTE!${NC}"
-echo ""
-echo -e "${GREEN}════════════════════════════════════════════════════════════════════════${NC}"
-echo ""
+print_header "RESUMEN FINAL"
 
 PROJECT_NAME=$(basename "$PROJECT_PATH")
 FINAL_URL="${BASE_URL:-http://localhost:8888/$PROJECT_NAME/public}"
@@ -468,6 +492,12 @@ echo -e "${RED}  IMPORTANTE:${NC}"
 echo -e "${GRAY}    • Cambie la contraseña del administrador después del primer acceso${NC}"
 echo -e "${GRAY}    • Asegúrese de que los servidores MAMP estén ejecutándose${NC}"
 echo -e "${GRAY}    • Configure HTTPS para producción${NC}"
+echo ""
+echo -e "${YELLOW}  CONFIGURACIÓN DE REDIRECCIONES:${NC}"
+echo -e "${GRAY}    • Se ha creado .htaccess automáticamente${NC}"
+echo -e "${GRAY}    • Ahora puedes acceder SIN /index.php en la URL${NC}"
+echo -e "${GRAY}    • Si aún tienes problemas, asegúrate de que mod_rewrite${NC}"
+echo -e "${GRAY}      esté habilitado en Apache MAMP${NC}"
 echo ""
 echo -e "${GRAY}════════════════════════════════════════════════════════════════════════${NC}"
 echo ""
