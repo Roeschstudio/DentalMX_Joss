@@ -5,11 +5,11 @@
     <div class="ds-page__header">
         <h1 class="ds-page__title"><?= isset($cita) && !empty($cita['id']) ? '✏️ Editar Cita' : '📅 Nueva Cita'; ?></h1>
         <div class="ds-page__actions">
-            <a href="<?= base_url('/citas'); ?>" class="ds-btn ds-btn--secondary">
+            <a href="<?= site_url('citas'); ?>" class="ds-btn ds-btn--secondary">
                 <span class="ds-btn__icon ds-btn__icon--left">⬅️</span>
                 Volver a Citas
             </a>
-            <a href="<?= base_url('/citas/calendario'); ?>" class="ds-btn ds-btn--info">
+            <a href="<?= site_url('citas/calendario'); ?>" class="ds-btn ds-btn--info">
                 <span class="ds-btn__icon ds-btn__icon--left">📅</span>
                 Ver Calendario
             </a>
@@ -42,8 +42,8 @@
             <?php 
             $isEdit = isset($cita) && !empty($cita['id']);
             $formAction = $isEdit 
-                ? base_url('/citas/' . $cita['id'] . '/actualizar') 
-                : base_url('/citas/guardar');
+                ? site_url('citas/' . $cita['id'] . '/actualizar') 
+                : site_url('citas/guardar');
             ?>
             <form action="<?= $formAction; ?>" method="POST" id="citaForm">
                 <?= csrf_field(); ?>

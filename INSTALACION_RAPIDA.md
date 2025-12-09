@@ -237,11 +237,56 @@ chmod +x setup-htaccess-macos.sh
 
 ---
 
+## 🔧 Diagnóstico de Problemas
+
+### En Windows (XAMPP)
+
+Si experimentas errores de conexión a MySQL:
+
+```powershell
+# Ejecuta el script de diagnóstico
+.\diagnose-mysql-windows.bat
+```
+
+Este script verificará:
+- ✓ Que XAMPP esté instalado
+- ✓ Que MySQL esté ejecutándose
+- ✓ Que el puerto esté configurado correctamente
+- ✓ Que la base de datos exista
+- ✓ Que las credenciales sean válidas
+
+### En macOS (MAMP)
+
+Si experimentas errores de conexión a MySQL:
+
+```bash
+# Ejecuta el script de diagnóstico
+chmod +x diagnose-mysql-macos.sh
+./diagnose-mysql-macos.sh
+```
+
+Este script verificará:
+- ✓ Que MAMP esté instalado
+- ✓ Que MySQL esté ejecutándose
+- ✓ Que el puerto esté configurado correctamente
+- ✓ Que la base de datos exista
+- ✓ Que las credenciales sean válidas
+
+### Documento de Referencia Completo
+
+Para una guía completa de solución de problemas, consulta:
+- **Archivo:** `MYSQL_TROUBLESHOOTING.md`
+- **Contenido:** Soluciones detalladas, comandos útiles, referencias
+
+---
+
 ## Soporte
 
 Para soporte técnico, contacte a:
 - **Email:** soporte@dentalmx.com
 - **GitHub Issues:** [Reportar un problema](https://github.com/Roeschstudio/DentalMX_Joss/issues)
+- **Documentación:** Ver `MYSQL_TROUBLESHOOTING.md` para problemas de MySQL
 
 ---
 © 2024 Roesch Studio - DentalMX v1.0.0
+

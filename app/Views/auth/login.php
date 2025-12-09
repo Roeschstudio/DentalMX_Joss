@@ -124,7 +124,7 @@ try {
                         </div>
                     <?php endif; ?>
 
-                    <form action="<?= base_url('/auth/login') ?>" method="post" id="loginForm">
+                    <form action="<?= site_url('auth/login') ?>" method="post" id="loginForm">
                         <?= csrf_field() ?>
                         
                         <div class="ds-form-group">

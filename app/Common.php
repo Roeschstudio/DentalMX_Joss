@@ -13,3 +13,6 @@
  *
  * @see: https://codeigniter.com/user_guide/extending/common.html
  */
+
+// Cargar helper de URLs personalizado para DentalMX
+helper('url_helper');
